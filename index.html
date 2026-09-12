@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#070b18">
+    <title>Habitat_ | Information</title>
+    <meta name="description" content="Personal portfolio of Habitat_ — Minecraft File Maker &amp; Plugin Developer">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css?v=11">
+</head>
+<body>
+
+    <!-- ===== PRELOADER ===== -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-cube">
+                <span></span><span></span><span></span><span></span>
+            </div>
+            <div class="preloader-label pixel-font">LOADING</div>
+            <div class="preloader-track"><div class="preloader-fill" id="preloader-fill"></div></div>
+        </div>
+    </div>
+
+    <!-- ===== SCROLL PROGRESS ===== -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+
+    <!-- ===== BACKGROUND LAYERS ===== -->
+    <div class="bg-layers" aria-hidden="true">
+        <div class="aurora aurora-1"></div>
+        <div class="aurora aurora-2"></div>
+        <div class="aurora aurora-3"></div>
+        <div class="aurora aurora-4"></div>
+        <div class="grid-overlay"></div>
+        <div class="noise-overlay"></div>
+    </div>
+    <canvas id="particles-canvas" aria-hidden="true"></canvas>
+    <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header" id="header">
+        <div class="header-inner">
+            <nav class="nav">
+                <a href="#top" class="logo">
+                    <span class="logo-mark pixel-font">⛏</span>
+                    <span class="logo-text">Habitat_</span>
+                </a>
+
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#about" class="nav-link active"><span class="nav-num">01</span>About</a></li>
+                    <li><a href="#skills" class="nav-link"><span class="nav-num">02</span>Skills</a></li>
+                    <li><a href="#plugins" class="nav-link"><span class="nav-num">03</span>Plugins</a></li>
+                    <li><a href="#server" class="nav-link"><span class="nav-num">04</span>Server</a></li>
+                </ul>
+
+                <div class="nav-actions">
+                    <button class="icon-btn theme-toggle" id="theme-toggle" aria-label="Đổi giao diện">
+                        <span class="theme-icon" id="theme-icon">🌙</span>
+                    </button>
+                    <button class="icon-btn menu-toggle" id="menu-toggle" aria-label="Menu" aria-expanded="false">
+                        <span class="burger"><i></i><i></i><i></i></span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== MOBILE DRAWER ===== -->
+    <div class="drawer-backdrop" id="drawer-backdrop"></div>
+    <aside class="drawer" id="drawer">
+        <div class="drawer-head">
+            <span class="drawer-title pixel-font">MENU</span>
+            <button class="icon-btn" id="drawer-close" aria-label="Đóng menu">✕</button>
+        </div>
+        <ul class="drawer-links">
+            <li><a href="#about" class="drawer-link"><span class="d-num">01</span><span>About</span><span class="d-arrow">→</span></a></li>
+            <li><a href="#skills" class="drawer-link"><span class="d-num">02</span><span>Skills</span><span class="d-arrow">→</span></a></li>
+            <li><a href="#plugins" class="drawer-link"><span class="d-num">03</span><span>Plugins</span><span class="d-arrow">→</span></a></li>
+            <li><a href="#server" class="drawer-link"><span class="d-num">04</span><span>Server</span><span class="d-arrow">→</span></a></li>
+        </ul>
+        <div class="drawer-foot">
+            <span class="drawer-foot-label">Server IP</span>
+            <button class="drawer-ip" id="drawer-ip">Soulmc.vn <span>⧉</span></button>
+        </div>
+    </aside>
+
+    <div class="container" id="top">
+
+        <!-- ===== HERO ===== -->
+        <section class="hero" id="about">
+            <div class="hero-content reveal">
+                <div class="avatar-wrapper">
+                    <div class="orbit orbit-1"><span class="orbit-dot"></span></div>
+                    <div class="orbit orbit-2"><span class="orbit-dot"></span></div>
+                    <div class="avatar-ring">
+                        <div class="avatar-border">
+                            <div class="avatar">
+                                <img src="assets/images/avatar.gif" alt="Habitat_ Avatar" id="avatar-img">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="avatar-glow"></div>
+                    <div class="avatar-status" title="Online">
+                        <span class="avatar-status-dot"></span>
+                    </div>
+                </div>
+
+                <div class="hero-text">
+                    <div class="hero-badge">
+                        <span class="hero-badge-dot"></span>
+                        <span>Available for projects</span>
+                    </div>
+
+                    <p class="greeting pixel-font">Xin chào, tôi là</p>
+
+                    <h1 class="name" data-text="Habitat_">
+                        <span class="name-gradient">Habitat_</span>
+                    </h1>
+
+                    <div class="typing-wrapper">
+                        <span class="typing-prefix">&gt;</span>
+                        <span class="typing-text" id="typing-text"></span>
+                        <span class="cursor-blink"></span>
+                    </div>
+
+                    <p class="bio">
+                        🎮 Minecraft File Maker. Đam mê xây dựng thế giới ảo và các dự án
+                        sáng tạo. Luôn tìm kiếm cơ hội để học hỏi và phát triển.
+                    </p>
+
+                    <div class="hero-tags">
+                        <span class="tag"><span class="tag-ico">⛏</span> Minecraft</span>
+                        <span class="tag"><span class="tag-ico">📁</span> File Maker</span>
+                        <span class="tag"><span class="tag-ico">⚙️</span> Configer</span>
+                    </div>
+
+                    <div class="hero-cta">
+                        <a href="#plugins" class="btn btn-primary">
+                            <span>Xem Plugins</span>
+                            <span class="btn-ico">↗</span>
+                        </a>
+                        <button class="btn btn-ghost" id="copy-ip-hero">
+                            <span class="btn-ico">⧉</span>
+                            <span>Copy Server IP</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="stats-row reveal">
+                <div class="stat-tile">
+                    <span class="stat-value" data-count="2">0</span>
+                    <span class="stat-label">Plugins</span>
+                </div>
+                <div class="stat-tile">
+                    <span class="stat-value" data-count="3">0</span>
+                    <span class="stat-label">Năm kinh nghiệm</span>
+                </div>
+                <div class="stat-tile">
+                    <span class="stat-value" id="stat-players">—</span>
+                    <span class="stat-label">Player Online</span>
+                </div>
+                <div class="stat-tile">
+                    <span class="stat-value" data-count="100" data-suffix="%">0</span>
+                    <span class="stat-label">Đam mê</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SKILLS / MARQUEE ===== -->
+        <section class="skills-section" id="skills">
+            <h2 class="section-title reveal">
+                <span class="title-badge">02</span>
+                <span class="title-text pixel-font">Skills &amp; Tools</span>
+                <span class="title-line"></span>
+            </h2>
+
+            <div class="marquee reveal" aria-hidden="true">
+                <div class="marquee-track">
+                    <span class="marquee-item">⛏ MINECRAFT</span><span class="marquee-sep">✦</span>
+                    <span class="marquee-item">☕ JAVA</span><span class="marquee-sep">✦</span>
+                    <span class="marquee-item">📜 YAML</span><span class="marquee-sep">✦</span>
+                    <span class="marquee-item">🧩 SPIGOT API</span><span class="marquee-sep">✦</span>
+                    <span class="marquee-item">🗃 MYSQL</span><span class="marquee-sep">✦</span>
+                    <span class="marquee-item">⚙️ CONFIG</span><span class="marquee-sep">✦</span>
+                    <span class="marquee-item">🖥 SERVER ADMIN</span><span class="marquee-sep">✦</span>
+                    <span class="marquee-item">⛏ MINECRAFT</span><span class="marquee-sep">✦</span>
+                    <span class="marquee-item">☕ JAVA</span><span class="marquee-sep">✦</span>
+                    <span class="marquee-item">📜 YAML</span><span class="marquee-sep">✦</span>
+                    <span class="marquee-item">🧩 SPIGOT API</span><span class="marquee-sep">✦</span>
+                    <span class="marquee-item">🗃 MYSQL</span><span class="marquee-sep">✦</span>
+                    <span class="marquee-item">⚙️ CONFIG</span><span class="marquee-sep">✦</span>
+                    <span class="marquee-item">🖥 SERVER ADMIN</span><span class="marquee-sep">✦</span>
+                </div>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-card reveal" data-tilt>
+                    <div class="skill-head">
+                        <span class="skill-ico">☕</span>
+                        <span class="skill-name">Java / Spigot</span>
+                        <span class="skill-pct">30%</span>
+                    </div>
+                    <div class="skill-track"><div class="skill-fill" data-fill="30"></div></div>
+                </div>
+                <div class="skill-card reveal" data-tilt>
+                    <div class="skill-head">
+                        <span class="skill-ico">⚙️</span>
+                        <span class="skill-name">Config / YAML</span>
+                        <span class="skill-pct">85%</span>
+                    </div>
+                    <div class="skill-track"><div class="skill-fill" data-fill="85"></div></div>
+                </div>
+                <div class="skill-card reveal" data-tilt>
+                    <div class="skill-head">
+                        <span class="skill-ico">🖥</span>
+                        <span class="skill-name">Server Setup</span>
+                        <span class="skill-pct">90%</span>
+                    </div>
+                    <div class="skill-track"><div class="skill-fill" data-fill="90"></div></div>
+                </div>
+                <div class="skill-card reveal" data-tilt>
+                    <div class="skill-head">
+                        <span class="skill-ico">🎨</span>
+                        <span class="skill-name">UI / Design</span>
+                        <span class="skill-pct">35%</span>
+                    </div>
+                    <div class="skill-track"><div class="skill-fill" data-fill="35"></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PLUGINS ===== -->
+        <section class="plugins-section" id="plugins">
+            <h2 class="section-title reveal">
+                <span class="title-badge">03</span>
+                <span class="title-text pixel-font">My Plugins</span>
+                <span class="title-line"></span>
+            </h2>
+
+            <div class="plugins-grid">
+                <a href="https://www.spigotmc.org/resources/opprotection.128272/" target="_blank" rel="noopener" class="plugin-card reveal" data-tilt>
+                    <span class="card-shine"></span>
+                    <div class="plugin-icon"><span>🛡️</span></div>
+                    <div class="plugin-info">
+                        <div class="plugin-top">
+                            <h3 class="plugin-name">OPProtection</h3>
+                            <span class="plugin-badge">SpigotMC</span>
+                        </div>
+                        <p class="plugin-desc">Bảo vệ server khỏi những lệnh nguy hiểm từ OP giả mạo.</p>
+                        <div class="plugin-meta">
+                            <span class="meta-chip">🔒 Security</span>
+                            <span class="meta-chip">☕ Java</span>
+                        </div>
+                    </div>
+                    <span class="plugin-arrow">→</span>
+                </a>
+
+                <a href="https://www.spigotmc.org/resources/ipsecuzpet.130551/" target="_blank" rel="noopener" class="plugin-card reveal" data-tilt>
+                    <span class="card-shine"></span>
+                    <div class="plugin-icon"><span>🐾</span></div>
+                    <div class="plugin-info">
+                        <div class="plugin-top">
+                            <h3 class="plugin-name">IpsecuzPet</h3>
+                            <span class="plugin-badge">SpigotMC</span>
+                        </div>
+                        <p class="plugin-desc">Hệ thống pet đáng yêu cho server Minecraft của bạn.</p>
+                        <div class="plugin-meta">
+                            <span class="meta-chip">🐶 Pets</span>
+                            <span class="meta-chip">✨ Cosmetic</span>
+                        </div>
+                    </div>
+                    <span class="plugin-arrow">→</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- ===== SERVER STATUS ===== -->
+        <section class="server-section" id="server">
+            <h2 class="section-title reveal">
+                <span class="title-badge">04</span>
+                <span class="title-text pixel-font">Server Status</span>
+                <span class="title-line"></span>
+            </h2>
+
+            <div class="server-card reveal" id="server-card">
+                <span class="card-shine"></span>
+
+                <div class="server-card-header">
+                    <div class="server-icon-wrapper">
+                        <img src="" alt="Server Icon" id="server-icon" class="server-icon">
+                        <div class="server-icon-placeholder" id="server-icon-placeholder">⛏</div>
+                    </div>
+                    <div class="server-head-text">
+                        <div class="server-motd" id="server-motd">Đang tải...</div>
+                        <button class="server-ip-btn" id="copy-ip-card">
+                            <span class="ip-label">IP</span>
+                            <span class="ip-value" id="server-ip">Soulmc.vn</span>
+                            <span class="ip-copy">⧉</span>
+                        </button>
+                    </div>
+                    <div class="status-indicator" id="status-indicator">
+                        <span class="status-dot"></span>
+                        <span class="status-text">Checking...</span>
+                    </div>
+                </div>
+
+                <div class="server-info-grid">
+                    <div class="info-cell">
+                        <span class="info-label">Online</span>
+                        <span class="info-value highlight" id="server-players">—</span>
+                    </div>
+                    <div class="info-cell">
+                        <span class="info-label">Software</span>
+                        <span class="info-value" id="server-software">—</span>
+                    </div>
+                    <div class="info-cell">
+                        <span class="info-label">Version</span>
+                        <span class="info-value" id="server-version">—</span>
+                    </div>
+                    <div class="info-cell">
+                        <span class="info-label">Ping</span>
+                        <span class="info-value" id="server-ping">—</span>
+                    </div>
+                </div>
+
+                <div class="player-bar-wrapper">
+                    <div class="player-bar-top">
+                        <span class="player-bar-caption">Sức chứa server</span>
+                        <span class="player-bar-text" id="player-bar-text">0 / 0</span>
+                    </div>
+                    <div class="player-bar">
+                        <div class="player-bar-fill" id="player-bar-fill"><span class="bar-shimmer"></span></div>
+                    </div>
+                </div>
+
+                <div class="server-foot">
+                    <p class="last-updated" id="last-updated">Cập nhật lần cuối: —</p>
+                    <button class="refresh-btn" id="refresh-btn" aria-label="Làm mới">
+                        <span id="refresh-ico">⟳</span> Refresh
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== FOOTER ===== -->
+        <footer class="footer">
+            <div class="footer-glow"></div>
+            <div class="footer-logo pixel-font">⛏ Habitat_</div>
+            <p class="footer-text">Made with <span class="heart">💙</span> &amp; a lot of coffee — 2026</p>
+            <div class="footer-chips">
+                <span class="footer-chip">Minecraft</span>
+                <span class="footer-chip">Plugins</span>
+                <span class="footer-chip">Config</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ===== BACK TO TOP ===== -->
+    <button class="to-top" id="to-top" aria-label="Lên đầu trang">↑</button>
+
+    <!-- ===== MUSIC FAB (mobile) ===== -->
+    <button class="music-fab" id="music-fab" aria-label="Mở trình phát nhạc">
+        <span class="fab-ico">🎵</span>
+        <span class="fab-eq" id="fab-eq"><i></i><i></i><i></i></span>
+    </button>
+
+    <!-- ===== MUSIC PLAYER ===== -->
+    <div class="music-player" id="music-player">
+        <div class="music-header" id="music-header">
+            <span class="music-title-bar">
+                <span class="eq" id="eq"><i></i><i></i><i></i><i></i></span>
+                <span class="pixel-font">MUSIC</span>
+            </span>
+            <div class="music-header-controls">
+                <button class="music-toggle-btn" id="music-minimize" aria-label="Thu nhỏ">
+                    <span id="music-minimize-icon">▼</span>
+                </button>
+                <button class="music-toggle-btn music-close" id="music-close" aria-label="Đóng">✕</button>
+            </div>
+        </div>
+
+        <div class="music-body" id="music-body">
+            <div class="music-art" id="music-art">
+                <div class="art-disc"><span class="art-hole"></span></div>
+                <div class="music-now-playing">
+                    <span class="now-playing-label">Now Playing</span>
+                    <span class="now-playing-name" id="now-playing-name">—</span>
+                </div>
+            </div>
+
+            <div class="music-seek">
+                <span class="time-cur" id="time-cur">0:00</span>
+                <div class="seek-track" id="seek-track">
+                    <div class="seek-fill" id="seek-fill"><span class="seek-thumb"></span></div>
+                </div>
+                <span class="time-dur" id="time-dur">0:00</span>
+            </div>
+
+            <div class="music-controls">
+                <button class="music-btn" id="music-prev" aria-label="Bài trước">⏮</button>
+                <button class="music-btn music-btn-play" id="music-play" aria-label="Phát">▶</button>
+                <button class="music-btn" id="music-next" aria-label="Bài sau">⏭</button>
+            </div>
+
+            <div class="music-volume">
+                <span class="volume-icon" id="volume-icon">🔊</span>
+                <input type="range" id="volume-slider" class="volume-slider" min="0" max="100" value="50" aria-label="Âm lượng">
+                <span class="volume-value" id="volume-value">50%</span>
+            </div>
+
+            <div class="music-playlist" id="music-playlist">
+                <div class="playlist-title pixel-font">Playlist</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== TOAST ===== -->
+    <div class="toast" id="toast"><span id="toast-msg"></span></div>
+
+    <script src="js/script.js?v=11"></script>
+</body>
+</html>

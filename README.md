@@ -1,23 +1,30 @@
-# Habitat_ — 1:1 Website Source
+# mrfuji UI v3
 
-Project này được tổ chức lại từ mã nguồn website Habitat_ đã cung cấp, giữ nguyên bố cục, phong cách visual và tương tác chính.
+- Multi-page navigation: index + 7 category pages.
+- Admin upload library with categories.
+- IndexedDB file storage in the current browser.
+- Music playlist at the top of homepage + admin music upload.
+- Avatar management, theme switch, search, clock/weather.
 
-## Cấu trúc
+## Admin demo
+Password: `mrfuji-admin`
 
-- `index.html` — trang chính
-- `css/style.css` — toàn bộ style/theme/responsive
-- `js/script.js` — animation, particles, menu, theme, server status, music player
-- `assets/images/avatar.gif` — avatar
-- `assets/audio/` — đặt `music.mp3`, `music2.mp3`, `music3.mp3` nếu muốn dùng playlist nhạc
+## Important
+This is still a static frontend. Uploaded files are stored locally in the browser using IndexedDB. To make uploads shared for all visitors and persistent on a server, connect the admin functions to Firebase, Supabase, Cloudflare R2, S3, or a Node/PHP backend.
 
-## Chạy local
+## V6 additions
+- Ticket Center với tạo ticket, mã ticket tự động, hàng chờ theo ưu tiên, trạng thái và lịch sử.
+- Admin Ticket Queue: tìm kiếm, lọc trạng thái, đổi trạng thái, xóa ticket và xuất JSON.
+- Floating “Tạo ticket” CTA trên mọi trang.
+- Image safety layer: lazy loading, decoding async, giới hạn kích thước và fallback khi ảnh lỗi.
+- Responsive/mobile polish cho Ticket Center.
 
-Mở bằng một static server (khuyến nghị):
+### Lưu ý dữ liệu
+Project vẫn là static frontend. Ticket, lượt tải, yêu thích và dữ liệu admin demo vẫn lưu ở localStorage/IndexedDB của trình duyệt hiện tại. Muốn ticket dùng chung cho nhiều người truy cập, hãy nối phần Ticket API tới Firebase, Supabase hoặc backend Node/PHP.
 
-```bash
-python -m http.server 8080
-```
-
-Sau đó truy cập `http://localhost:8080`.
-
-Không cần Node.js hay build step.
+## V7 Japanese premium polish
+- Japanese landmark line icons: Fuji, Torii, Sakura, Tokyo Tower and Castle.
+- Refined navigation/buttons with smaller proportions, softer borders and cleaner hover states.
+- Added washi-inspired subtle grid texture and calmer Japanese premium visual language.
+- Added floating "Ủng hộ Dev" button + donation modal.
+- Added `assets/donate-qr.png` as a clearly labeled demo QR. Replace it with the real payment QR to activate actual donations without changing the UI.

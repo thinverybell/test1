@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="fujiBody" x1="32" y1="8" x2="32" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7EB8E8"/>
+      <stop offset="0.55" stop-color="#5B9BD5"/>
+      <stop offset="1" stop-color="#3A7AB5"/>
+    </linearGradient>
+    <linearGradient id="fujiSnow" x1="32" y1="8" x2="32" y2="28" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#E8F4FC"/>
+    </linearGradient>
+  </defs>
+  <!-- Mountain body -->
+  <path d="M32 10 L6 54 Q32 48 58 54 Z" fill="url(#fujiBody)"/>
+  <!-- Snow cap -->
+  <path d="M32 10 L18 32 Q26 28 32 30 Q38 28 46 32 Z" fill="url(#fujiSnow)"/>
+  <!-- Soft highlight -->
+  <path d="M32 14 L22 30 Q28 27 32 28 Q36 27 42 30 Z" fill="#fff" opacity="0.35"/>
+</svg>

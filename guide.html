@@ -1,3 +1,124 @@
-<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>mrfuji — Resource Hub</title><meta name="description" content="mrfuji — Game Developer & Resource Creator"><link rel="icon" href="assets/favicon.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@500;700;900&family=Pacifico&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css"></head><body><div class="page-bg"></div><div class="page-overlay"></div><div class="petal-layer"></div><header class="topbar"><a class="brand" href="index.html"><span class="brand-mark">富</span><span class="brand-word">mrfuji</span></a><nav class="topnav"><a href="index.html">⌂ Trang chủ</a><a href="plugins.html">◇ Plugin</a><a href="config.html">□ Config</a><a href="mods.html">✣ Mod</a><a href="assets.html">◈ Asset</a><a href="tools.html">⌁ Tool</a><a href="resources.html">▤ Tài nguyên</a><a href="guide.html">▥ Hướng dẫn</a><a href="my-library.html">♡ Kho cá nhân</a><a href="#" data-open-ticket-nav>🎫 Ticket</a></nav><div class="top-actions"><button class="search-pill" id="searchOpen">⌕ <span>Tìm kiếm...</span><kbd>⌘ K</kbd></button><button class="icon-btn" id="themeToggle">◐</button><button class="icon-btn settings-trigger" id="adminOpen" aria-label="Cài đặt">⚙</button><span class="settings-label">Cài đặt</span><button class="mini-avatar" id="avatarBtn"><img src="assets/images/avatar.gif" alt="Avatar"></button></div></header><aside class="sidebar"><div class="side-inner"><a class="side-item" href="index.html"><span class="side-icon">⌂</span><span>Trang chủ</span></a><a class="side-item" href="plugins.html"><span class="side-icon">◇</span><span>Plugin</span><span class="chev">›</span></a><a class="side-item" href="config.html"><span class="side-icon">□</span><span>Config</span><span class="chev">›</span></a><a class="side-item" href="mods.html"><span class="side-icon">✣</span><span>Mod</span><span class="chev">›</span></a><a class="side-item" href="assets.html"><span class="side-icon">◈</span><span>Asset</span><span class="chev">›</span></a><a class="side-item" href="tools.html"><span class="side-icon">⌁</span><span>Tool</span><span class="chev">›</span></a><a class="side-item" href="resources.html"><span class="side-icon">▤</span><span>Tài nguyên</span><span class="chev">›</span></a><a class="side-item" href="guide.html"><span class="side-icon">▥</span><span>Hướng dẫn</span><span class="chev">›</span></a><a class="side-item" href="my-library.html"><span class="side-icon">♡</span><span>Kho cá nhân</span><span class="chev">›</span></a><a class="side-item settings-side-link" href="#" data-open-settings><span class="side-icon">⚙</span><span>Cài đặt</span><span class="chev">›</span></a><a class="side-item ticket-side-link" href="#" data-open-ticket-nav><span class="side-icon">🎫</span><span>Ticket / Hàng chờ</span><span class="chev">›</span></a><div class="side-quote">“Không có<br>thành công nào<br>mà không bắt đầu<br>từ những bước nhỏ.”<small>— mrfuji</small></div></div></aside><main class="content"><div class="page-shell" id="catalogRoot" data-cat="guide"><section class="page-hero"><span class="page-hero-kicker">mrfuji / library</span><h1 id="catTitle">Hướng dẫn</h1><p id="catDesc">Bài viết, tài liệu, tutorial và hướng dẫn sử dụng.</p></section><div class="page-toolbar"><div class="count" id="catCount">Đang tải...</div><div class="catalog-tools"><label class="catalog-search"><span>⌕</span><input id="catalogSearch" placeholder="Lọc trong danh mục..."></label><select id="catalogSort" class="catalog-select"><option value="new">Mới nhất</option><option value="downloads">Nhiều lượt tải</option><option value="name">Tên A → Z</option></select><label class="fav-filter"><input id="onlyFav" type="checkbox"> ★ Yêu thích</label><button class="filter-btn" id="refreshCatalog">↻</button></div></div><div class="resource-cards" id="catalogList"></div></div></main><footer class="footer shell"><div class="footer-brand"><span class="script">mrfuji</span><span class="seal">富</span><p>Better Resources • Stronger Community</p></div><div class="footer-nav"><a href="#" data-open-settings>Cài đặt</a><a href="index.html">Trang chủ</a><a href="plugins.html">Plugin</a><a href="config.html">Config</a><a href="mods.html">Mod</a><a href="assets.html">Asset</a><a href="tools.html">Tool</a><a href="resources.html">Tài nguyên</a><a href="guide.html">Hướng dẫn</a><a href="my-library.html">Kho cá nhân</a></div><small>© 2026 mrfuji. All rights reserved.</small></footer><div class="search-modal" id="searchModal" aria-hidden="true"><div class="search-box"><button class="close" id="searchClose">×</button><div class="modal-heading"><span class="modal-kicker">SEARCH</span><b>Tìm kiếm tài nguyên</b><small>Tìm trong toàn bộ thư viện đã upload</small></div><div class="search-input"><span>⌕</span><input id="searchInput" placeholder="Tên file, tiêu đề, danh mục..." autocomplete="off"></div><div class="search-results" id="searchResults"></div></div></div>
-<div class="admin-modal" id="adminModal" aria-hidden="true"><div class="admin-box"><button class="close" id="adminClose">×</button><div class="modal-heading"><span class="modal-kicker">ADMIN CENTER</span><b>Quản trị website</b><small>Đổi avatar, upload tài nguyên, quản lý danh sách và nhạc.</small></div><form class="admin-form" id="adminForm"><label>Mật khẩu quản trị<input id="adminPassword" type="password" placeholder="Nhập mật khẩu"></label><button class="primary-btn" type="submit">Đăng nhập Admin</button><p class="admin-note">Bản tĩnh: quyền này chỉ bảo vệ giao diện trên trình duyệt hiện tại.</p></form><div class="hidden" id="adminPanel"><div class="admin-profile-card"><div class="admin-avatar-preview"><img src="assets/images/avatar.gif" alt="Avatar"></div><div><b>mrfuji Administrator</b><small>Quản lý profile & thư viện</small></div><span class="admin-badge">ADMIN</span></div><div class="admin-actions"><button class="primary-btn" id="changeAvatarBtn">Đổi ảnh đại diện</button><button class="secondary-btn" id="resetAvatarBtn">Khôi phục avatar</button><button class="secondary-btn" id="logoutAdmin">Đăng xuất</button><input id="avatarInput" type="file" accept="image/*" hidden></div><div class="admin-tabs"><button class="admin-tab active" data-admin-tab="upload">Upload</button><button class="admin-tab" data-admin-tab="library">Thư viện</button><button class="admin-tab" data-admin-tab="music">Nhạc</button><button class="admin-tab" data-admin-tab="stats">Thống kê</button></div><div id="adminWorkspace"></div></div></div></div>
-<div class="toast" id="toast"></div><div class="scroll-progress" id="scrollProgress"></div><button class="back-top" id="backTop">↑</button><script src="js/ticket-center.js"></script><script src="js/script.js"></script><script>document.querySelector('#refreshCatalog')?.addEventListener('click',()=>location.reload())</script></body></html>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MR.FUJI — Hướng dẫn</title>
+  <link rel="icon" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@500;700;900&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="page-bg"></div>
+  <div class="page-overlay"></div>
+  <div class="petal-layer" id="petalLayer"></div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+            <a href="index.html" class="logo">
+        <div class="logo-icon">
+          <img src="assets/logo-fuji.svg" alt="MR.FUJI" width="44" height="44">
+        </div>
+        <div class="logo-text">
+          <span class="logo-name">MR.FUJI</span>
+          <span class="logo-jp">富士の美</span>
+        </div>
+      </a>
+
+      <nav class="side-nav">
+        <a href="index.html" class="side-item"><span class="side-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span><span>Trang chủ</span></a>
+        <a href="assets.html" class="side-item "><span class="side-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></span><span>Thư viện ảnh</span></a>
+        <a href="plugins.html" class="side-item "><span class="side-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg></span><span>Video</span></a>
+        <a href="resources.html" class="side-item "><span class="side-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span><span>Nhạc</span></a>
+        <a href="my-library.html" class="side-item "><span class="side-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></span><span>Yêu thích</span></a>
+        <a href="#" class="side-item" data-open-ticket><span class="side-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 9a3 3 0 013-3h14a3 3 0 013 3v6a3 3 0 01-3 3H5a3 3 0 01-3-3V9z"/><path d="M2 12h20"/></svg></span><span>Ticket & Hỗ trợ</span><span class="badge">5</span></a>
+        <a href="#" class="side-item" data-open-settings><span class="side-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg></span><span>Cài đặt</span></a>
+      </nav>
+            <div class="side-decor">
+        <div class="decor-art">
+          <img src="assets/sidebar-decor.svg" alt="" class="decor-bg">
+          <p class="side-quote-jp">日本の美を<br>一緒に感じよう</p>
+          <div class="decor-line"></div>
+          <div class="decor-torii">
+            <svg viewBox="0 0 80 50" fill="none"><rect x="12" y="16" width="7" height="30" rx="1.5" fill="#E74C3C"/><rect x="61" y="16" width="7" height="30" rx="1.5" fill="#E74C3C"/><rect x="6" y="10" width="68" height="7" rx="2" fill="#C0392B"/><rect x="12" y="4" width="56" height="5" rx="1.5" fill="#E74C3C"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main-wrapper">
+    <header class="topbar">
+      <div class="search-wrap">
+        <input type="search" class="search-input" placeholder="Tìm kiếm hình ảnh, video, nhạc...">
+        <button class="search-btn" aria-label="Tìm kiếm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></button>
+      </div>
+      <div class="top-actions">
+        <button class="icon-btn" id="themeToggle" aria-label="Theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></button>
+        <button class="icon-btn notif-btn" aria-label="Notifications"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg><span class="notif-badge">3</span></button>
+        <div class="user-menu">
+          <img src="assets/images/avatar.gif" alt="Avatar" class="user-avatar" onerror="this.src='https://api.dicebear.com/7.x/avataaars/svg?seed=LacHuy'">
+          <div class="user-info"><span class="user-name">Lạc Huy Lê</span><span class="user-role">Admin</span></div>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </div>
+    </header>
+
+    <div class="content-layout">
+      <main class="content">
+        <div class="page-hero">
+          <div class="page-hero-kicker">GUIDE</div>
+          <h1>Hướng dẫn sử dụng</h1>
+          <p>Các bài hướng dẫn giúp bạn sử dụng website hiệu quả hơn.</p>
+        </div>
+        <section class="section">
+          <div class="section-head">
+            <h2><span class="sakura-icon">📖</span> Nội dung</h2>
+          </div>
+          <div class="resource-grid">
+            <div class="resource-card">
+              <div class="rc-icon">📖</div>
+              <b>Đang cập nhật</b>
+              <small>Sắp ra mắt</small>
+              <p>Nội dung Hướng dẫn sẽ được thêm vào đây. Admin có thể upload và quản lý từ trung tâm.</p>
+              <a href="index.html" class="rc-btn">Về trang chủ</a>
+            </div>
+            <div class="resource-card">
+              <div class="rc-icon">🌸</div>
+              <b>Khám phá Nhật Bản</b>
+              <small>Gợi ý</small>
+              <p>Quay lại trang chủ để xem danh mục nổi bật, ảnh mới và ticket hỗ trợ.</p>
+              <a href="index.html" class="rc-btn">Khám phá ngay</a>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-left">
+        <div class="footer-brand">
+          <div class="logo-icon small"><svg viewBox="0 0 48 48" fill="none"><path d="M24 6L8 38h32L24 6z" fill="#5B9BD5"/><path d="M24 12L12 36h24L24 12z" fill="#fff" opacity="0.35"/></svg></div>
+          <div><strong>MR.FUJI</strong><p>Cùng nhau khám phá vẻ đẹp Nhật Bản</p></div>
+        </div>
+        <nav class="footer-links">
+          <a href="index.html">Trang chủ</a><a href="assets.html">Hình ảnh</a><a href="plugins.html">Video</a><a href="resources.html">Nhạc</a><a href="#">Liên hệ</a>
+        </nav>
+      </div>
+      <div class="footer-right">
+        <p class="copyright">© 2025 Mr.Fuji. All rights reserved. · Made with ❤️ for Japan</p>
+      </div>
+    </footer>
+  </div>
+
+  <button class="back-top" id="backTop" aria-label="Lên đầu trang"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg></button>
+  <button class="ticket-float" data-open-ticket>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 9a3 3 0 013-3h14a3 3 0 013 3v6a3 3 0 01-3 3H5a3 3 0 01-3-3V9z"/><path d="M2 12h20"/></svg>
+    <span>Ticket / Hỗ trợ</span>
+    <span class="float-badge">5</span>
+  </button>
+  <script src="js/script.js"></script>
+</body>
+</html>

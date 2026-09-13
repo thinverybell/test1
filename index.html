@@ -1,6 +1,304 @@
-<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>mrfuji — Resource Hub</title><meta name="description" content="mrfuji — Game Developer & Resource Creator"><link rel="icon" href="assets/favicon.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@500;700;900&family=Pacifico&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css"></head><body><div class="page-bg"></div><div class="page-overlay"></div><div class="petal-layer"></div><header class="topbar"><a class="brand" href="index.html"><img class="brand-logo" src="assets/logo-fuji.png" alt="MR.FUJI"><span class="brand-text"><span class="brand-word">MR.FUJI</span><span class="brand-jp">富士の美</span></span></a><nav class="topnav"><a href="index.html">⌂ Trang chủ</a><a href="plugins.html">◇ Plugin</a><a href="config.html">□ Config</a><a href="mods.html">✣ Mod</a><a href="assets.html">◈ Asset</a><a href="tools.html">⌁ Tool</a><a href="resources.html">▤ Tài nguyên</a><a href="guide.html">▥ Hướng dẫn</a><a href="my-library.html">♡ Kho cá nhân</a><a href="#" data-open-ticket-nav>🎫 Ticket</a></nav><div class="top-actions"><button class="search-pill" id="searchOpen">⌕ <span>Tìm kiếm...</span><kbd>⌘ K</kbd></button><button class="icon-btn" id="themeToggle">◐</button><button class="icon-btn settings-trigger" id="adminOpen" aria-label="Cài đặt">⚙</button><span class="settings-label">Cài đặt</span><button class="mini-avatar" id="avatarBtn"><img src="assets/images/avatar.gif" alt="Avatar"></button></div></header><aside class="sidebar"><div class="side-inner"><a class="side-item" href="index.html"><span class="side-icon">⌂</span><span>Trang chủ</span></a><a class="side-item" href="plugins.html"><span class="side-icon">◇</span><span>Plugin</span><span class="chev">›</span></a><a class="side-item" href="config.html"><span class="side-icon">□</span><span>Config</span><span class="chev">›</span></a><a class="side-item" href="mods.html"><span class="side-icon">✣</span><span>Mod</span><span class="chev">›</span></a><a class="side-item" href="assets.html"><span class="side-icon">◈</span><span>Asset</span><span class="chev">›</span></a><a class="side-item" href="tools.html"><span class="side-icon">⌁</span><span>Tool</span><span class="chev">›</span></a><a class="side-item" href="resources.html"><span class="side-icon">▤</span><span>Tài nguyên</span><span class="chev">›</span></a><a class="side-item" href="guide.html"><span class="side-icon">▥</span><span>Hướng dẫn</span><span class="chev">›</span></a><a class="side-item" href="my-library.html"><span class="side-icon">♡</span><span>Kho cá nhân</span><span class="chev">›</span></a><a class="side-item settings-side-link" href="#" data-open-settings><span class="side-icon">⚙</span><span>Cài đặt</span><span class="chev">›</span></a><a class="side-item ticket-side-link" href="#" data-open-ticket-nav><span class="side-icon">🎫</span><span>Ticket / Hàng chờ</span><span class="chev">›</span></a><div class="side-quote side-quote-jp-block"><img src="assets/sidebar-decor.png" alt="" class="side-decor-img"><p class="side-quote-jp">日本の美を<br>一緒に感じよう</p><div class="side-torii-line"></div></div></div></aside><main class="content" id="top"><div class="announcement-bar shell" id="announcementBar"><span class="announcement-icon">✦</span><span data-announcement-text></span></div><section class="hero shell"><div class="hero-art"></div><div class="hero-glow"></div><div class="hero-profile"><button class="avatar-ring" id="heroAvatarBtn"><img src="assets/images/avatar.gif" alt="mrfuji avatar"></button><div class="hero-copy"><div class="hero-name"><span class="script">mrfuji</span><span class="seal">富士</span></div><div class="hero-role">Game Developer & Resource Creator</div><p>“Chia sẻ tài nguyên, kết nối cộng đồng,<br>cùng nhau phát triển thế giới game.”</p><div class="socials"><a href="#">◉</a><a href="#">▶</a><a href="#">◖</a><a href="#">◌</a></div></div></div><div class="clock-card"><div class="clock-label"><span class="status-dot"></span><span>THỜI GIAN HIỆN TẠI</span></div><div class="clock-main"><div class="time" id="liveTime">00:00:00</div><div class="date" id="liveDate">Đang cập nhật ngày</div></div><div class="weather"><span id="weatherIcon">☁</span><strong id="weatherTemp">--°C</strong><small>Việt Nam</small></div><div class="jp-tag">富士のように頂を目指す</div></div><div class="hero-stats"><div><strong id="heroTotalCount">0</strong><span>Tài nguyên</span></div><div><strong>24/7</strong><span>Hoạt động</span></div><div><strong id="heroMusicCount">0</strong><span>Playlist</span></div><div class="online"><i></i><strong>Online</strong><span>Hoạt động</span></div></div></section>
-<section class="music-home shell"><div class="music-now"><div class="music-cover">♫</div><div><b id="nowMusic">Chưa có nhạc</b><small id="nowArtist">Admin có thể upload playlist</small><div class="music-controls"><button id="musicPrev">‹</button><button id="musicPlay">▶</button><button id="musicNext">›</button><input id="musicVolume" type="range" min="0" max="1" step="0.01" value=".8"></div><div class="music-progress"><span id="musicCurrent">0:00</span><input id="musicSeek" type="range" min="0" max="100" value="0" step="0.1"><span id="musicDuration">0:00</span></div></div></div><div class="music-list" id="musicList"><div class="empty-state" style="padding:18px">Đang tải playlist...</div></div></section>
-<section class="home-insights shell"><div class="insight-card featured"><div class="insight-kicker">DISCOVER</div><h2>Tài nguyên nổi bật</h2><p>Khám phá những nội dung mới nhất, file được yêu thích và các danh mục đang hoạt động.</p><div class="insight-links"><a href="plugins.html">Khám phá Plugin →</a><a href="assets.html">Xem Asset →</a><a href="guide.html">Đọc Hướng dẫn →</a></div></div><div class="live-stats"><div><span>Plugin</span><b id="homePluginCount">0</b></div><div><span>Asset</span><b id="homeAssetCount">0</b></div><div><span>Tài nguyên</span><b id="homeResourceCount">0</b></div><div><span>Yêu thích</span><b id="homeFavCount">0</b></div></div></section><section class="latest shell"><div class="section-head"><div><h2>✦ <span>Mới cập nhật</span></h2><p>Những file vừa được thêm vào thư viện</p></div><a class="section-link" href="resources.html">Xem tất cả →</a></div><div class="resource-cards" id="latestGrid"><div class="empty-state">Đang tải...</div></div></section><section class="history-section shell"><div class="section-head"><div><h2>↺ <span>Vừa sử dụng</span></h2><p>Những tài nguyên bạn đã tải gần đây</p></div><a class="section-link" href="my-library.html">Mở kho cá nhân →</a></div><div class="resource-cards" id="historyGrid"></div></section><section class="intro shell"><div class="intro-copy"><h2><span>◈</span> Giới thiệu về tôi</h2><p>Xin chào! Mình là mrfuji – mình xây dựng website này như một kho tài nguyên có tổ chức cho game, Minecraft, plugin, config, mod, asset và công cụ.</p><p>Admin chỉ cần upload một lần, chọn danh mục, hệ thống sẽ tự đưa nội dung vào đúng list và đúng trang.</p><div class="signature">mrfuji</div></div><div class="category-grid"><a class="cat-card red" href="plugins.html"><span class="cat-icon">◇</span><b>Plugin</b><small>Plugin hỗ trợ game</small><em>→</em></a><a class="cat-card blue" href="config.html"><span class="cat-icon">▤</span><b>Config</b><small>Cấu hình tối ưu</small><em>→</em></a><a class="cat-card cyan" href="mods.html"><span class="cat-icon">⚙</span><b>Mod</b><small>Mở rộng gameplay</small><em>→</em></a><a class="cat-card gold" href="assets.html"><span class="cat-icon">◈</span><b>Asset</b><small>Hình ảnh, âm thanh</small><em>→</em></a><a class="cat-card purple" href="tools.html"><span class="cat-icon">⌁</span><b>Tool</b><small>Công cụ hỗ trợ</small><em>→</em></a></div></section>
-<section class="section shell"><div class="section-head"><div><h2>⚡ <span>Khu vực nhanh</span></h2><p>Mỗi mục giờ là một trang riêng.</p></div></div><div class="resource-cards"><a class="resource-card" href="plugins.html"><div class="card-top"><span class="resource-icon">◇</span><div><b>Plugin</b><small>Trang riêng</small></div></div><p>Xem toàn bộ plugin, tải file và quản lý danh sách.</p><div class="card-actions"><span class="small-btn primary">Mở Plugin →</span></div></a><a class="resource-card" href="assets.html"><div class="card-top"><span class="resource-icon">◈</span><div><b>Asset</b><small>Trang riêng</small></div></div><p>Hình ảnh, âm thanh, resource pack và các gói thiết kế.</p><div class="card-actions"><span class="small-btn primary">Mở Asset →</span></div></a><a class="resource-card" href="guide.html"><div class="card-top"><span class="resource-icon">▥</span><div><b>Hướng dẫn</b><small>Trang riêng</small></div></div><p>Các bài hướng dẫn có thể upload và phân loại riêng.</p><div class="card-actions"><span class="small-btn primary">Mở Hướng dẫn →</span></div></a></div></section></main><footer class="footer shell"><div class="footer-brand"><span class="script">mrfuji</span><span class="seal">富</span><p>Better Resources • Stronger Community</p></div><div class="footer-nav"><a href="#" data-open-settings>Cài đặt</a><a href="index.html">Trang chủ</a><a href="plugins.html">Plugin</a><a href="config.html">Config</a><a href="mods.html">Mod</a><a href="assets.html">Asset</a><a href="tools.html">Tool</a><a href="resources.html">Tài nguyên</a><a href="guide.html">Hướng dẫn</a><a href="my-library.html">Kho cá nhân</a></div><small>© 2026 mrfuji. All rights reserved.</small></footer><div class="search-modal" id="searchModal" aria-hidden="true"><div class="search-box"><button class="close" id="searchClose">×</button><div class="modal-heading"><span class="modal-kicker">SEARCH</span><b>Tìm kiếm tài nguyên</b><small>Tìm trong toàn bộ thư viện đã upload</small></div><div class="search-input"><span>⌕</span><input id="searchInput" placeholder="Tên file, tiêu đề, danh mục..." autocomplete="off"></div><div class="search-results" id="searchResults"></div></div></div>
-<div class="admin-modal" id="adminModal" aria-hidden="true"><div class="admin-box"><button class="close" id="adminClose">×</button><div class="modal-heading"><span class="modal-kicker">ADMIN CENTER</span><b>Quản trị website</b><small>Đổi avatar, upload tài nguyên, quản lý danh sách và nhạc.</small></div><form class="admin-form" id="adminForm"><label>Mật khẩu quản trị<input id="adminPassword" type="password" placeholder="Nhập mật khẩu"></label><button class="primary-btn" type="submit">Đăng nhập Admin</button><p class="admin-note">Bản tĩnh: quyền này chỉ bảo vệ giao diện trên trình duyệt hiện tại.</p></form><div class="hidden" id="adminPanel"><div class="admin-profile-card"><div class="admin-avatar-preview"><img src="assets/images/avatar.gif" alt="Avatar"></div><div><b>mrfuji Administrator</b><small>Quản lý profile & thư viện</small></div><span class="admin-badge">ADMIN</span></div><div class="admin-actions"><button class="primary-btn" id="changeAvatarBtn">Đổi ảnh đại diện</button><button class="secondary-btn" id="resetAvatarBtn">Khôi phục avatar</button><button class="secondary-btn" id="logoutAdmin">Đăng xuất</button><input id="avatarInput" type="file" accept="image/*" hidden></div><div class="admin-tabs"><button class="admin-tab active" data-admin-tab="upload">Upload</button><button class="admin-tab" data-admin-tab="library">Thư viện</button><button class="admin-tab" data-admin-tab="music">Nhạc</button><button class="admin-tab" data-admin-tab="stats">Thống kê</button></div><div id="adminWorkspace"></div></div></div></div>
-<div class="toast" id="toast"></div><div class="scroll-progress" id="scrollProgress"></div><button class="back-top" id="backTop">↑</button><script src="js/ticket-center.js"></script><script src="js/script.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>MR.FUJI — Khám phá Nhật Bản</title>
+  <meta name="description" content="MR.FUJI — Thư viện tài nguyên & vẻ đẹp Nhật Bản">
+  <link rel="icon" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@500;700;900&family=Pacifico&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="page-bg"></div>
+  <div class="page-overlay"></div>
+  <div class="petal-layer" id="petalLayer"></div>
+
+  <!-- TOPBAR (new look + old hooks) -->
+  <header class="topbar">
+    <a class="brand" href="index.html">
+      <img class="brand-logo" src="assets/logo-fuji.png" alt="MR.FUJI">
+      <span class="brand-text">
+        <span class="brand-word">MR.FUJI</span>
+        <span class="brand-jp">富士の美</span>
+      </span>
+    </a>
+    <nav class="topnav">
+      <a href="index.html" class="active">⌂ Trang chủ</a>
+      <a href="plugins.html">◇ Plugin</a>
+      <a href="config.html">□ Config</a>
+      <a href="mods.html">✣ Mod</a>
+      <a href="assets.html">◈ Asset</a>
+      <a href="tools.html">⌁ Tool</a>
+      <a href="resources.html">▤ Tài nguyên</a>
+      <a href="guide.html">▥ Hướng dẫn</a>
+      <a href="my-library.html">♡ Kho cá nhân</a>
+      <a href="#" data-open-ticket-nav>🎫 Ticket</a>
+    </nav>
+    <div class="top-actions">
+      <button class="search-pill" id="searchOpen">⌕ <span>Tìm kiếm hình ảnh, video, nhạc...</span><kbd>⌘ K</kbd></button>
+      <button class="icon-btn" id="themeToggle" aria-label="Theme">◐</button>
+      <button class="icon-btn settings-trigger" id="adminOpen" aria-label="Cài đặt">⚙</button>
+      <button class="icon-btn notif-btn" aria-label="Thông báo" id="notifBtn">🔔<span class="notif-badge">3</span></button>
+      <button class="mini-avatar" id="avatarBtn"><img src="assets/images/avatar.gif" alt="Avatar"></button>
+      <div class="user-chip">
+        <span class="user-name">Lạc Huy Lê</span>
+        <span class="user-role">Admin</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="sidebar">
+    <div class="side-inner">
+      <a class="side-item active" href="index.html"><span class="side-icon">⌂</span><span>Trang chủ</span></a>
+      <a class="side-item" href="assets.html"><span class="side-icon">🖼</span><span>Thư viện ảnh</span></a>
+      <a class="side-item" href="plugins.html"><span class="side-icon">▶</span><span>Video</span></a>
+      <a class="side-item" href="resources.html"><span class="side-icon">♪</span><span>Nhạc</span></a>
+      <a class="side-item" href="my-library.html"><span class="side-icon">♡</span><span>Yêu thích</span></a>
+      <a class="side-item" href="#" data-open-ticket-nav><span class="side-icon">🎫</span><span>Ticket & Hỗ trợ</span><span class="badge">5</span></a>
+      <a class="side-item settings-side-link" href="#" data-open-settings id="settingsSide"><span class="side-icon">⚙</span><span>Cài đặt</span></a>
+      <div class="side-quote side-quote-jp-block">
+        <img src="assets/sidebar-decor.png" alt="" class="side-decor-img">
+        <p class="side-quote-jp">日本の美を<br>一緒に感じよう</p>
+        <div class="side-torii-line"></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="content" id="top">
+    <div class="announcement-bar shell" id="announcementBar"><span class="announcement-icon">✦</span><span data-announcement-text></span></div>
+
+    <!-- Hero Japan style -->
+    <section class="hero shell jp-hero">
+      <div class="hero-art"></div>
+      <div class="hero-glow"></div>
+      <div class="jp-hero-copy">
+        <p class="hero-kicker">Khám phá</p>
+        <h1 class="hero-title-jp">Nhật Bản</h1>
+        <p class="hero-desc-jp">Những khoảnh khắc đẹp nhất đang chờ bạn!</p>
+        <a href="#categories" class="cta-btn">Khám phá ngay →</a>
+      </div>
+      <!-- keep old hero hooks hidden but present for JS counts -->
+      <div class="hero-profile" style="position:absolute;opacity:0;pointer-events:none;width:0;height:0;overflow:hidden">
+        <button class="avatar-ring" id="heroAvatarBtn"><img src="assets/images/avatar.gif" alt=""></button>
+        <div class="hero-copy"><div class="hero-name"><span class="script">mrfuji</span><span class="seal">富士</span></div><div class="hero-role">Game Developer</div></div>
+      </div>
+      <div class="clock-card" style="display:none">
+        <div class="clock-label"><span class="status-dot"></span><span>TIME</span></div>
+        <div class="clock-main"><div class="time" id="liveTime">00:00:00</div><div class="date" id="liveDate"></div></div>
+        <div class="weather"><span id="weatherIcon">☁</span><strong id="weatherTemp">--°C</strong></div>
+      </div>
+      <div class="hero-stats" style="display:none">
+        <div><strong id="heroTotalCount">0</strong><span>Tài nguyên</span></div>
+        <div><strong id="heroMusicCount">0</strong><span>Playlist</span></div>
+      </div>
+    </section>
+
+    <!-- Quick access -->
+    <section class="quick-access shell">
+      <a href="assets.html" class="qa-card"><div class="qa-icon">🗻</div><span>Hình ảnh đẹp</span></a>
+      <a href="plugins.html" class="qa-card"><div class="qa-icon">▶</div><span>Video hot</span></a>
+      <a href="resources.html" class="qa-card"><div class="qa-icon">♪</div><span>Nhạc thư giãn</span></a>
+      <a href="guide.html" class="qa-card"><div class="qa-icon">⛩</div><span>Chủ đề Nhật Bản</span></a>
+      <a href="my-library.html" class="qa-card"><div class="qa-icon">♡</div><span>Yêu thích của bạn</span></a>
+    </section>
+
+    <!-- Music (feature kept, restyled) -->
+    <section class="music-home shell">
+      <div class="music-now">
+        <div class="music-cover">♫</div>
+        <div>
+          <b id="nowMusic">Chưa có nhạc</b>
+          <small id="nowArtist">Admin có thể upload playlist</small>
+          <div class="music-controls">
+            <button id="musicPrev">‹</button>
+            <button id="musicPlay">▶</button>
+            <button id="musicNext">›</button>
+            <input id="musicVolume" type="range" min="0" max="1" step="0.01" value=".8">
+          </div>
+          <div class="music-progress">
+            <span id="musicCurrent">0:00</span>
+            <input id="musicSeek" type="range" min="0" max="100" value="0" step="0.1">
+            <span id="musicDuration">0:00</span>
+          </div>
+        </div>
+      </div>
+      <div class="music-list" id="musicList"><div class="empty-state" style="padding:18px">Đang tải playlist...</div></div>
+    </section>
+
+    <!-- Insights / stats (feature) -->
+    <section class="home-insights shell">
+      <div class="insight-card featured">
+        <div class="insight-kicker">DISCOVER</div>
+        <h2>Tài nguyên nổi bật</h2>
+        <p>Khám phá những nội dung mới nhất, file được yêu thích và các danh mục đang hoạt động.</p>
+        <div class="insight-links">
+          <a href="plugins.html">Khám phá Plugin →</a>
+          <a href="assets.html">Xem Asset →</a>
+          <a href="guide.html">Đọc Hướng dẫn →</a>
+        </div>
+      </div>
+      <div class="live-stats">
+        <div><span>Plugin</span><b id="homePluginCount">0</b></div>
+        <div><span>Asset</span><b id="homeAssetCount">0</b></div>
+        <div><span>Tài nguyên</span><b id="homeResourceCount">0</b></div>
+        <div><span>Yêu thích</span><b id="homeFavCount">0</b></div>
+      </div>
+    </section>
+
+    <!-- Categories visual -->
+    <section class="section shell" id="categories">
+      <div class="section-head">
+        <div><h2>🌸 Danh mục nổi bật</h2></div>
+        <a class="section-link" href="resources.html">Xem tất cả →</a>
+      </div>
+      <div class="category-grid">
+        <a class="cat-card red" href="assets.html"><span class="cat-icon">🗻</span><b>Phong cảnh</b><small>Hình ảnh đẹp</small><em>→</em></a>
+        <a class="cat-card blue" href="plugins.html"><span class="cat-icon">🏙</span><b>Đô thị</b><small>Video / plugin</small><em>→</em></a>
+        <a class="cat-card cyan" href="mods.html"><span class="cat-icon">🎌</span><b>Anime</b><small>Mods & assets</small><em>→</em></a>
+        <a class="cat-card gold" href="guide.html"><span class="cat-icon">🎉</span><b>Lễ hội</b><small>Hướng dẫn</small><em>→</em></a>
+        <a class="cat-card purple" href="tools.html"><span class="cat-icon">🍣</span><b>Ẩm thực</b><small>Tools</small><em>→</em></a>
+      </div>
+    </section>
+
+    <!-- Latest (feature grid) -->
+    <section class="latest shell">
+      <div class="section-head">
+        <div><h2>📸 Ảnh / file mới cập nhật</h2><p>Những file vừa được thêm vào thư viện</p></div>
+        <a class="section-link" href="resources.html">Xem tất cả →</a>
+      </div>
+      <div class="resource-cards" id="latestGrid"><div class="empty-state">Đang tải...</div></div>
+    </section>
+
+    <section class="history-section shell">
+      <div class="section-head">
+        <div><h2>↺ Vừa sử dụng</h2><p>Những tài nguyên bạn đã tải gần đây</p></div>
+        <a class="section-link" href="my-library.html">Mở kho cá nhân →</a>
+      </div>
+      <div class="resource-cards" id="historyGrid"></div>
+    </section>
+
+    <!-- Support + Ticket visual panel (JS ticket still works via launcher) -->
+    <section class="jp-side-panels shell">
+      <div class="widget support-widget support-card-img">
+        <img src="assets/donate-card.png" alt="Ủng hộ Dev" class="donate-card-img">
+        <button type="button" class="support-btn support-btn-overlay" id="donateBtn">♥ Quét mã ủng hộ</button>
+      </div>
+      <div class="widget ticket-widget" id="ticket-status">
+        <div class="widget-head">
+          <h3 class="widget-title">Trạng thái Ticket</h3>
+          <a href="#" class="section-link" data-open-ticket-nav>Xem tất cả →</a>
+        </div>
+        <div class="ticket-stats">
+          <div class="stat-box total"><span class="stat-num" id="statTotal">0</span><span class="stat-label">Tổng</span></div>
+          <div class="stat-box pending"><span class="stat-num" id="statPending">0</span><span class="stat-label">Chờ xử lý</span></div>
+          <div class="stat-box progress"><span class="stat-num" id="statProgress">0</span><span class="stat-label">Đang xử lý</span></div>
+          <div class="stat-box done"><span class="stat-num" id="statDone">0</span><span class="stat-label">Đã xử lý</span></div>
+        </div>
+        <button class="create-ticket-btn" data-open-ticket-nav type="button">+ Tạo Ticket mới</button>
+        <p class="ticket-hint">Dùng nút 🎫 hoặc form Ticket Center để tạo / theo dõi ticket (tính năng gốc).</p>
+      </div>
+    </section>
+
+    <footer class="footer shell">
+      <div class="footer-brand">
+        <img src="assets/logo-fuji.png" alt="" class="footer-logo-img">
+        <span class="script">MR.FUJI</span>
+        <span class="seal">富</span>
+        <p>Cùng nhau khám phá vẻ đẹp Nhật Bản</p>
+      </div>
+      <div class="footer-nav">
+        <a href="assets.html">Hình ảnh</a>
+        <a href="plugins.html">Video</a>
+        <a href="resources.html">Nhạc</a>
+        <a href="my-library.html">Cộng đồng</a>
+        <a href="#" data-open-settings>Liên hệ</a>
+        <a href="#" data-open-settings>Cài đặt</a>
+        <a href="index.html">Trang chủ</a>
+      </div>
+      <small>© 2025 Mr.Fuji. All rights reserved. · Made with ❤️ for Japan</small>
+    </footer>
+  </main>
+
+  <!-- ===== ORIGINAL FEATURE MODALS (giữ nguyên tính năng) ===== -->
+  <div class="search-modal" id="searchModal" aria-hidden="true">
+    <div class="search-box">
+      <button class="close" id="searchClose">×</button>
+      <div class="modal-heading"><span class="modal-kicker">SEARCH</span><b>Tìm kiếm tài nguyên</b><small>Tìm trong toàn bộ thư viện đã upload</small></div>
+      <div class="search-input"><span>⌕</span><input id="searchInput" placeholder="Tên file, tiêu đề, danh mục..." autocomplete="off"></div>
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </div>
+
+  <div class="admin-modal" id="adminModal" aria-hidden="true">
+    <div class="admin-box">
+      <button class="close" id="adminClose">×</button>
+      <div class="modal-heading"><span class="modal-kicker">ADMIN CENTER</span><b>Quản trị website</b><small>Đổi avatar, upload tài nguyên, quản lý danh sách và nhạc.</small></div>
+      <form class="admin-form" id="adminForm">
+        <label>Mật khẩu quản trị<input id="adminPassword" type="password" placeholder="Nhập mật khẩu"></label>
+        <button class="primary-btn" type="submit">Đăng nhập Admin</button>
+        <p class="admin-note">Bản tĩnh: quyền này chỉ bảo vệ giao diện trên trình duyệt hiện tại.</p>
+      </form>
+      <div class="hidden" id="adminPanel">
+        <div class="admin-profile-card">
+          <div class="admin-avatar-preview"><img src="assets/images/avatar.gif" alt="Avatar"></div>
+          <div><b>mrfuji Administrator</b><small>Quản lý profile & thư viện</small></div>
+          <span class="admin-badge">ADMIN</span>
+        </div>
+        <div class="admin-actions">
+          <button class="primary-btn" id="changeAvatarBtn">Đổi ảnh đại diện</button>
+          <button class="secondary-btn" id="resetAvatarBtn">Khôi phục avatar</button>
+          <button class="secondary-btn" id="logoutAdmin">Đăng xuất</button>
+          <input id="avatarInput" type="file" accept="image/*" hidden>
+        </div>
+        <div class="admin-tabs">
+          <button class="admin-tab active" data-admin-tab="upload">Upload</button>
+          <button class="admin-tab" data-admin-tab="library">Thư viện</button>
+          <button class="admin-tab" data-admin-tab="music">Nhạc</button>
+          <button class="admin-tab" data-admin-tab="stats">Thống kê</button>
+        </div>
+        <div id="adminWorkspace"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <button class="back-top" id="backTop">↑</button>
+
+  <script src="js/ticket-center.js"></script>
+  <script src="js/script.js"></script>
+  <script>
+  // Small bridge: settings opens admin; donate highlight; ticket stats from localStorage
+  (function(){
+    document.querySelectorAll('[data-open-settings]').forEach(el=>{
+      el.addEventListener('click', e=>{ e.preventDefault(); document.getElementById('adminOpen')?.click(); });
+    });
+    document.getElementById('donateBtn')?.addEventListener('click', ()=>{
+      const q=document.querySelector('.donate-card-img');
+      if(q){ q.style.transform='scale(1.03)'; setTimeout(()=>q.style.transform='',800); }
+      alert('Cảm ơn bạn! 🌸 Quét mã QR trên card để ủng hộ.');
+    });
+    function refreshTicketStats(){
+      try{
+        const list=JSON.parse(localStorage.getItem('mrfuji-tickets-v1')||'[]');
+        const c={total:list.length,pending:0,progress:0,done:0};
+        list.forEach(t=>{
+          if(t.status==='pending')c.pending++;
+          else if(t.status==='progress')c.progress++;
+          else if(t.status==='resolved'||t.status==='rejected')c.done++;
+        });
+        const set=(id,v)=>{const el=document.getElementById(id); if(el)el.textContent=v;};
+        set('statTotal',c.total); set('statPending',c.pending); set('statProgress',c.progress); set('statDone',c.done);
+      }catch(e){}
+    }
+    refreshTicketStats();
+    setInterval(refreshTicketStats, 3000);
+  })();
+  </script>
+</body>
+</html>

@@ -349,3 +349,146 @@ body {
   border-color: rgba(255,255,255,0.8) !important;
   color: #fff !important;
 }
+
+/* ===== Hybrid layout extras (new UI pieces) ===== */
+.notif-badge {
+  position: absolute; top: 2px; right: 2px;
+  min-width: 14px; height: 14px; font-size: 9px; font-weight: 800;
+  background: #FF4757; color: #fff; border-radius: 99px;
+  display: grid; place-items: center; border: 2px solid #fff;
+}
+.notif-btn { position: relative; }
+.user-chip { display: flex; flex-direction: column; line-height: 1.15; margin-left: 4px; }
+.user-chip .user-name { font-size: 12px; font-weight: 700; color: #2C3E50; }
+.user-chip .user-role {
+  font-size: 9px; font-weight: 800; color: #B8860B;
+  background: rgba(255,215,0,0.25); padding: 1px 5px; border-radius: 4px; width: fit-content;
+}
+.badge {
+  margin-left: auto; min-width: 18px; height: 18px;
+  background: #FF4757; color: #fff; font-size: 10px; font-weight: 800;
+  border-radius: 99px; display: grid; place-items: center; padding: 0 4px;
+}
+
+.jp-hero { position: relative; min-height: 280px; overflow: hidden; }
+.jp-hero-copy {
+  position: relative; z-index: 3;
+  padding: 40px 44px;
+  max-width: 480px;
+}
+.hero-kicker {
+  font-family: 'Dancing Script', 'Pacifico', cursive;
+  font-size: 26px; font-weight: 700; color: #5B9BD5; margin: 0 0 2px;
+}
+.hero-title-jp {
+  font-family: 'Dancing Script', 'Pacifico', cursive;
+  font-size: 48px; font-weight: 700; color: #2E6B9E;
+  margin: 0 0 10px; line-height: 1.1;
+  text-shadow: 0 2px 12px rgba(255,255,255,0.5);
+}
+.hero-desc-jp { font-size: 14px; color: #2C3E50; margin: 0 0 18px; opacity: 0.9; }
+.cta-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 11px 20px;
+  background: linear-gradient(135deg, #FF8FAB, #E85A7A);
+  color: #fff !important; font-weight: 700; font-size: 13.5px;
+  border-radius: 999px;
+  box-shadow: 0 8px 22px rgba(232,90,122,0.35);
+  transition: transform 0.2s;
+}
+.cta-btn:hover { transform: translateY(-2px); color: #fff !important; }
+
+.quick-access {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin-top: 14px;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.qa-card {
+  background: rgba(255,255,255,0.8);
+  border: 1px solid rgba(255,255,255,0.95);
+  border-radius: 14px;
+  padding: 16px 12px;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(120,80,100,0.1);
+  transition: 0.2s;
+  color: #2C3E50;
+}
+.qa-card:hover {
+  transform: translateY(-4px);
+  border-color: #FFB7C5;
+  background: #fff;
+}
+.qa-icon {
+  width: 48px; height: 48px; border-radius: 14px;
+  display: grid; place-items: center;
+  background: linear-gradient(145deg, #FFE0E8, #FFB7C5);
+  font-size: 22px;
+}
+.qa-card span { font-size: 12.5px; font-weight: 600; }
+
+.jp-side-panels {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 14px;
+  margin-top: 16px;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+.widget {
+  background: rgba(255,255,255,0.8);
+  border: 1px solid rgba(255,255,255,0.95);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 8px 24px rgba(120,80,100,0.1);
+}
+.support-card-img { padding: 0; overflow: hidden; position: relative; }
+.donate-card-img { width: 100%; height: auto; display: block; border-radius: 16px; transition: 0.25s; }
+.support-btn-overlay {
+  position: absolute; left: 14px; right: 14px; bottom: 14px;
+  padding: 11px;
+  background: linear-gradient(135deg, #FF8FAB, #E85A7A);
+  color: #fff; font-weight: 700; font-size: 13px;
+  border-radius: 999px; border: none; cursor: pointer;
+  box-shadow: 0 6px 16px rgba(232,90,122,0.35);
+}
+.widget-title { font-size: 14px; font-weight: 700; color: #2E6B9E; margin: 0; }
+.widget-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.ticket-stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; margin-bottom: 12px; }
+.stat-box {
+  text-align: center; padding: 10px 4px; border-radius: 10px;
+  background: rgba(255,255,255,0.7); border: 1px solid rgba(255,200,210,0.4);
+}
+.stat-num { display: block; font-size: 18px; font-weight: 800; }
+.stat-label { font-size: 10px; color: #6B7C8F; }
+.stat-box.total .stat-num { color: #2E6B9E; }
+.stat-box.pending .stat-num { color: #D4A017; }
+.stat-box.progress .stat-num { color: #27AE60; }
+.stat-box.done .stat-num { color: #7F8C8D; }
+.create-ticket-btn {
+  width: 100%; padding: 11px;
+  background: linear-gradient(135deg, #FF6B8A, #E85A7A);
+  color: #fff; font-weight: 700; font-size: 13px;
+  border: none; border-radius: 12px; cursor: pointer;
+  box-shadow: 0 6px 16px rgba(232,90,122,0.3);
+}
+.ticket-hint { font-size: 11px; color: #6B7C8F; margin: 10px 0 0; line-height: 1.45; }
+.footer-logo-img { width: 36px; height: 36px; object-fit: contain; vertical-align: middle; margin-right: 6px; }
+
+@media (max-width: 1100px) {
+  .quick-access { grid-template-columns: repeat(3, 1fr); }
+  .jp-side-panels { grid-template-columns: 1fr; }
+  .user-chip { display: none; }
+}
+@media (max-width: 700px) {
+  .quick-access { grid-template-columns: repeat(2, 1fr); }
+  .jp-hero-copy { padding: 24px; }
+  .hero-title-jp { font-size: 36px; }
+}

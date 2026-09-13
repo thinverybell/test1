@@ -901,3 +901,40 @@ a.ticket-float, .ticket-float {
   .socials { justify-content: flex-start; }
   .footer-tagline { margin-left: 0; padding-left: 0; border: 0; width: 100%; }
 }
+
+/* Real image donate card */
+.support-card-img {
+  padding: 0;
+  overflow: hidden;
+  background: transparent;
+  border: none;
+  box-shadow: var(--shadow-soft);
+  position: relative;
+}
+.donate-card-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius);
+}
+.support-btn-overlay {
+  position: absolute;
+  left: 12px; right: 12px; bottom: 14px;
+  width: auto;
+  z-index: 2;
+  opacity: 0.95;
+}
+.support-btn-overlay:hover { opacity: 1; }
+
+.logo-icon img {
+  width: 44px; height: 44px;
+  object-fit: contain;
+}
+.decor-bg {
+  object-fit: cover;
+  opacity: 0.7;
+}
+.footer-logo {
+  width: 40px; height: 40px;
+  object-fit: contain;
+}

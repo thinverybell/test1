@@ -86,102 +86,18 @@ function updateFakeStats(){const v=$('#liveVisits');if(v)v.textContent=bumpTotal
 (async()=>{enhanceStudyUI();ensureDonateUI();await seed();modal();applyAnnouncement();await renderCatalog();await renderHome();await renderMusic();updateFakeStats();setInterval(()=>{const o=$('#heroOnlineCount');if(o)o.textContent=fakeOnlineCount().toLocaleString('vi-VN')},5000)})();
 })();
 
-
-/* ============================================================
-   FIX PATCH JS — Scroll Reveal + Counter Animation + Stagger
-   ============================================================ */
+/* V12 — scroll reveal for professional lecture feel */
 (function(){
-  // Scroll Reveal with stagger
-  const revealTargets = document.querySelectorAll('.section, .latest, .history-section, .home-insights, .intro, .music-home, .page-hero, .resource-card, .cat-card, .insight-card, .live-stats, .skill, .plugin, .resource, .upload-box, .library-box, .ticket-card, .ticket-list, .queue-item');
-
-  revealTargets.forEach((el, i) => {
-    el.classList.add('reveal');
-    const delayClass = 'reveal-delay-' + ((i % 5) + 1);
-    el.classList.add(delayClass);
-  });
-
+  const targets = document.querySelectorAll('.music-home, .home-insights, .latest, .history-section, .intro, .section, .page-hero, .resource-cards, .category-grid');
+  if (!targets.length || !('IntersectionObserver' in window)) return;
+  targets.forEach(el => el.classList.add('reveal-ready'));
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        e.target.classList.add('in');
+        e.target.classList.add('is-visible');
         io.unobserve(e.target);
       }
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-  revealTargets.forEach(el => io.observe(el));
-
-  // Counter animation for stats
-  function animateCounter(el, duration = 1200) {
-    const text = el.textContent.trim();
-    const num = parseInt(text.replace(/[^\d]/g, ''), 10);
-    if (!num || num < 2) return;
-    const suffix = text.replace(/[\d\s]/g, '');
-    const startTime = performance.now();
-    function step(now) {
-      const p = Math.min((now - startTime) / duration, 1);
-      const eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(num * eased).toLocaleString('vi-VN') + (suffix ? ' ' + suffix : '');
-      if (p < 1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  }
-
-  const statObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        animateCounter(e.target);
-        statObserver.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.5 });
-
-  document.querySelectorAll('.hero-stats strong, .live-stats b, .admin-stat b, .mini-stat b').forEach(el => statObserver.observe(el));
-
-  // Smooth nav scroll indicator
-  const sections = document.querySelectorAll('section[id], .section[id]');
-  if (sections.length) {
-    const navLinks = document.querySelectorAll('.topnav a[href^="#"], .side-item[href^="#"]');
-    const navIo = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          navLinks.forEach(l => l.classList.remove('active'));
-          const id = e.target.id;
-          navLinks.forEach(l => {
-            if (l.getAttribute('href') === '#' + id) l.classList.add('active');
-          });
-        }
-      });
-    }, { threshold: 0.3 });
-    sections.forEach(s => navIo.observe(s));
-  }
-
-  // Parallax subtle effect for hero
-  const hero = document.querySelector('.hero');
-  if (hero) {
-    window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      if (y < 600) {
-        hero.style.transform = 'translateY(' + (y * 0.05) + 'px)';
-      }
-    }, { passive: true });
-  }
-
-  // Petal spawn enhancement
-  const petalLayer = document.querySelector('.petal-layer');
-  if (petalLayer) {
-    function spawnPetal() {
-      const p = document.createElement('div');
-      p.className = 'petal';
-      p.style.left = Math.random() * 100 + 'vw';
-      p.style.setProperty('--x', (Math.random() * 200 - 100) + 'px');
-      p.style.animationDuration = (4 + Math.random() * 6) + 's';
-      p.style.opacity = 0.4 + Math.random() * 0.4;
-      p.style.width = (8 + Math.random() * 6) + 'px';
-      p.style.height = (6 + Math.random() * 4) + 'px';
-      petalLayer.appendChild(p);
-      setTimeout(() => p.remove(), 10000);
-    }
-    setInterval(spawnPetal, 800);
-  }
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  targets.forEach(el => io.observe(el));
 })();

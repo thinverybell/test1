@@ -253,178 +253,383 @@ body:before{content:'';position:fixed;inset:0;pointer-events:none;z-index:-1;opa
 .admin-loader{display:grid;justify-items:center;gap:16px;padding:46px 12px 40px;text-align:center}.admin-loader .admin-spinner-ring{position:relative;width:64px;height:64px;display:grid;place-items:center}.admin-loader .admin-spinner-ring:before{content:'';position:absolute;inset:0;border-radius:50%;border:3px solid rgba(214,180,123,.16);border-top-color:var(--v8-red,#5a46d9);border-right-color:var(--v8-gold,#d6b47b);animation:adminspin .85s linear infinite}.admin-loader .admin-spinner-mark{font-family:'Noto Sans JP';font-weight:900;font-size:15px;color:#f0d9b0;opacity:.9}@keyframes adminspin{to{transform:rotate(360deg)}}.admin-loader p{margin:0;font-size:12px;font-weight:700;letter-spacing:.3px;color:#cfe0ec}.admin-loader small{color:#7d94a5;font-size:10px}.admin-loader-bar{width:180px;height:4px;border-radius:6px;background:rgba(255,255,255,.08);overflow:hidden}.admin-loader-bar>i{display:block;height:100%;width:0%;border-radius:6px;background:linear-gradient(90deg,var(--v8-red,#5a46d9),var(--v8-gold,#d6b47b))}.panel-enter{animation:panelIn .42s ease}@keyframes panelIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
 /* ============================================================
-   FIX PATCH v2024 — Layout + Animation + Readability
+   V12 — Layout fix + professional presentation animations
+   - No overlapping text
+   - Cleaner hero stacking on all breakpoints
+   - Smooth lecture-style section reveals
    ============================================================ */
 
-/* ---------- 1. RESET & BASE ---------- */
-html{scroll-behavior:smooth}
-body{overflow-x:hidden;min-height:100vh}
-img{max-width:100%;height:auto;display:block}
-
-/* ---------- 2. NAV FIX — không ẩn mục, scroll ngang mượt ---------- */
-.topnav{gap:4px;overflow-x:auto;overflow-y:visible;scrollbar-width:none;-ms-overflow-style:none;flex-wrap:nowrap;white-space:nowrap}
-.topnav::-webkit-scrollbar{display:none}
-.topnav a:nth-child(9){display:inline-flex!important}
-.topnav a{flex-shrink:0}
-
-/* ---------- 3. HERO FIX — Grid thay absolute, không chồng lấn ---------- */
-.hero{height:auto!important;min-height:0!important;display:grid;grid-template-columns:minmax(0,1fr) 340px;grid-template-rows:auto auto;gap:28px;padding:38px 30px 28px;border-radius:18px;position:relative;overflow:hidden}
-.hero:after{position:absolute;inset:0;pointer-events:none;z-index:1}
-.hero-profile{position:relative!important;left:auto!important;top:auto!important;grid-column:1;grid-row:1;z-index:3;display:flex;align-items:center;gap:24px}
-.clock-card{position:relative!important;top:auto!important;right:auto!important;grid-column:2;grid-row:1;align-self:start;width:auto!important;padding:18px 20px;border-radius:16px;z-index:3}
-.hero-stats{position:relative!important;left:auto!important;right:auto!important;bottom:auto!important;grid-column:1/-1;grid-row:2;height:auto!important;min-height:68px;z-index:3}
-.hero:before{display:none!important}
-
-/* ---------- 4. TEXT FIX — không cắt chữ ---------- */
-.resource-card .card-top b{white-space:normal!important;overflow:visible!important;text-overflow:clip!important}
-.resource-card{overflow:visible!important}
-.cat-card b{white-space:normal;overflow:visible;text-overflow:clip}
-.section-head h2{white-space:normal;overflow:visible;text-overflow:clip}
-
-/* ---------- 5. FONT SIZE FIX — dễ đọc ---------- */
-.cat-card small{font-size:11px!important;line-height:1.5}
-.resource-card small{font-size:11px!important}
-.section-head p{font-size:12px!important}
-.hero-stats span{font-size:11px!important}
-.hero-role{font-size:15px!important}
-.hero-copy p{font-size:14px!important;line-height:1.75}
-.clock-card .date{font-size:13px!important}
-.visit-counter{font-size:12px!important}
-
-/* ---------- 6. TOAST & BACK-TOP SEPARATION ---------- */
-.toast{bottom:76px!important;right:22px}
-.back-top{bottom:22px!important;right:22px}
-
-/* ---------- 7. SIDEBAR & CONTENT SPACING ---------- */
-.sidebar{width:220px;padding:24px 14px}
-.content{margin-left:220px;padding-top:88px;padding-right:16px}
-.shell{width:min(1100px,calc(100vw - 244px))}
-
-/* ---------- 8. CARD GRID FIX ---------- */
-.resource-cards{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
-.category-grid{grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
-
-/* ---------- 9. FOOTER FIX ---------- */
-.footer{grid-template-columns:1.2fr 2fr auto;align-items:end;gap:20px;padding:38px 10px 45px}
-.footer-nav{flex-wrap:wrap;gap:12px 22px}
-
-/* ============================================================
-   ANIMATION — Kiểu thuyết trình chuyên nghiệp
-   ============================================================ */
-
-/* Reveal on scroll */
-.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}
-.reveal.in{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
-
-/* Stagger children */
-.reveal-delay-1{transition-delay:.08s}
-.reveal-delay-2{transition-delay:.16s}
-.reveal-delay-3{transition-delay:.24s}
-.reveal-delay-4{transition-delay:.32s}
-.reveal-delay-5{transition-delay:.40s}
-
-/* Hero entrance */
-.hero .hero-profile{animation:heroSlideIn .9s cubic-bezier(.2,.8,.2,1) both}
-.hero .clock-card{animation:heroSlideIn .9s .12s cubic-bezier(.2,.8,.2,1) both}
-.hero .hero-stats{animation:heroSlideIn .9s .24s cubic-bezier(.2,.8,.2,1) both}
-@keyframes heroSlideIn{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
-
-/* Card hover — nghiêng nhẹ + glow */
-.resource-card,.cat-card,.insight-card,.live-stats div,.skill,.plugin,.resource{transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .35s}
-.resource-card:hover,.cat-card:hover{transform:translateY(-6px) scale(1.015)}
-.insight-card:hover{transform:translateY(-4px)}
-.skill:hover,.plugin:hover,.resource:hover{transform:translateY(-3px)}
-
-/* Section entrance */
-.section,.latest,.history-section,.home-insights,.intro,.music-home,.page-hero,.page-shell>section{animation:sectionFadeIn .7s cubic-bezier(.2,.8,.2,1) both}
-@keyframes sectionFadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
-
-/* Button micro-interaction */
-button,.small-btn,.primary-btn,.secondary-btn,.filter-btn,.ticket-btn{transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
-button:hover,.small-btn:hover,.primary-btn:hover,.secondary-btn:hover,.filter-btn:hover{transform:translateY(-2px)}
-button:active,.small-btn:active,.primary-btn:active{transform:translateY(0) scale(.98)}
-
-/* Avatar pulse */
-.avatar-ring{animation:avatarGlow 3s ease-in-out infinite}
-@keyframes avatarGlow{0%,100%{box-shadow:0 0 0 4px rgba(67,36,255,.82),0 0 0 7px rgba(5,12,19,.95),0 0 36px rgba(74,40,255,.35)}50%{box-shadow:0 0 0 4px rgba(67,36,255,.92),0 0 0 7px rgba(5,12,19,.95),0 0 48px rgba(74,40,255,.55)}}
-
-/* Online dot pulse */
-.hero-stats .online i{animation:onlinePulse 2s ease-in-out infinite}
-@keyframes onlinePulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(.8)}}
-
-/* Page hero animation */
-.page-hero{animation:pageHeroIn .8s cubic-bezier(.2,.8,.2,1) both}
-@keyframes pageHeroIn{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:none}}
-
-/* Music player animation */
-.music-now .music-cover{animation:musicBounce 2s ease-in-out infinite}
-@keyframes musicBounce{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
-
-/* Scroll progress glow */
-.scroll-progress{box-shadow:0 0 12px rgba(82,56,255,.6)}
-
-/* Modal entrance */
-.search-modal.open .search-box,.admin-modal.open .admin-box,.ticket-modal.open .ticket-panel{animation:modalPop .35s cubic-bezier(.2,.8,.2,1) both}
-@keyframes modalPop{from{opacity:0;transform:translateY(20px) scale(.97)}to{opacity:1;transform:none}}
-
-/* Like pop */
-.like-btn.like-pop{animation:likePop .4s cubic-bezier(.2,.8,.2,1)}
-@keyframes likePop{0%{transform:scale(1)}40%{transform:scale(1.35)}100%{transform:scale(1)}}
-
-/* Announcement bar slide */
-.announcement-bar.show{animation:announceSlide .4s ease both}
-@keyframes announceSlide{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
-
-/* Counter animation helper */
-.counting{transition:color .3s}
-
-/* Petal animation enhancement */
-.petal{will-change:transform,opacity}
-
-/* Smooth image loading */
-img{transition:opacity .3s ease}
-img[src]{opacity:1}
-img:not([src]){opacity:0}
-
-/* ============================================================
-   RESPONSIVE FIX
-   ============================================================ */
-@media(max-width:1100px){
-  .hero{grid-template-columns:1fr 300px;gap:20px;padding:28px 22px 22px}
-  .shell{width:min(1060px,calc(100vw - 236px))}
+/* Safe spacing for floating CTAs so content is never covered */
+main.content,
+.page-shell {
+  padding-bottom: 110px !important;
 }
-@media(max-width:960px){
-  .sidebar{display:none}
-  .content{margin-left:0;padding-left:14px;padding-right:14px}
-  .shell{width:calc(100vw - 28px)}
-  .hero{grid-template-columns:1fr;gap:20px;padding:24px 20px}
-  .hero-profile{flex-direction:row;flex-wrap:wrap}
-  .clock-card{order:3;width:auto!important}
-  .hero-stats{grid-template-columns:repeat(4,1fr)}
-  .category-grid{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
-  .resource-cards{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
-  .footer{grid-template-columns:1fr}
+.footer.shell {
+  padding-bottom: 100px !important;
 }
-@media(max-width:650px){
-  .topbar{height:60px;padding:0 14px}
-  .brand-word{font-size:24px}
-  .content{padding-top:72px}
-  .hero{padding:20px 16px;gap:16px}
-  .hero-profile{flex-direction:column;align-items:flex-start;gap:14px}
-  .avatar-ring{width:120px;height:120px}
-  .script{font-size:36px}
-  .hero-stats{grid-template-columns:repeat(2,1fr);min-height:0}
-  .hero-stats>div{min-height:56px;padding:8px}
-  .category-grid{grid-template-columns:repeat(2,1fr)}
-  .resource-cards{grid-template-columns:1fr}
-  .clock-card{padding:14px 16px}
-  .clock-card .time{font-size:28px}
-  .footer-nav{gap:10px 16px}
-  .footer>small{text-align:left}
-  .search-modal,.admin-modal{padding-top:80px}
+
+/* ---------- Hero layout: reliable stacking ---------- */
+.hero {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
 }
-@media(max-width:400px){
-  .hero-stats{grid-template-columns:1fr 1fr}
-  .category-grid{grid-template-columns:1fr}
+.hero-profile {
+  position: relative;
+  left: auto !important;
+  top: auto !important;
+  right: auto !important;
+  margin: 28px 28px 0;
+  z-index: 2;
+  flex-wrap: wrap;
+}
+.clock-card {
+  position: relative !important;
+  top: auto !important;
+  right: auto !important;
+  left: auto !important;
+  width: auto;
+  max-width: 340px;
+  margin: 16px 28px 0 auto;
+  z-index: 3;
+  padding-right: 18px !important;
+}
+.hero-stats {
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  margin: 18px 22px 22px;
+  width: auto;
+  z-index: 4;
+}
+.hero:before {
+  top: 16px;
+  right: 16px;
+}
+
+/* Desktop: keep side-by-side profile + clock feel */
+@media (min-width: 961px) {
+  .hero {
+    height: auto;
+    min-height: 340px;
+    display: grid;
+    grid-template-columns: 1fr minmax(280px, 340px);
+    grid-template-rows: 1fr auto;
+    align-items: start;
+    padding-bottom: 0;
+  }
+  .hero-profile {
+    grid-column: 1;
+    grid-row: 1;
+    margin: 36px 20px 12px 32px;
+  }
+  .clock-card {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 28px 22px 0 0;
+    width: auto;
+    justify-self: end;
+  }
+  .hero-stats {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    margin: 8px 22px 20px;
+  }
+  .hero:before {
+    writing-mode: vertical-rl;
+  }
+}
+
+/* Tablet */
+@media (max-width: 960px) {
+  .hero {
+    height: auto !important;
+    min-height: 0 !important;
+    padding-bottom: 8px;
+  }
+  .hero-profile {
+    margin: 24px 18px 0;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .avatar-ring {
+    width: 130px !important;
+    height: 130px !important;
+    flex-shrink: 0;
+  }
+  .clock-card {
+    margin: 14px 18px 0;
+    max-width: 100%;
+    width: calc(100% - 36px);
+  }
+  .hero-stats {
+    margin: 14px 16px 18px;
+    height: auto !important;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .hero:before { display: none; }
+}
+
+/* Mobile — stack cleanly, no overlap */
+@media (max-width: 650px) {
+  .hero {
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 0 0 12px;
+  }
+  .hero-profile {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    margin: 20px 16px 0 !important;
+    gap: 14px !important;
+  }
+  .avatar-ring {
+    width: 112px !important;
+    height: 112px !important;
+  }
+  .script { font-size: 36px !important; }
+  .hero-copy p {
+    max-width: 100% !important;
+    font-size: 13px;
+  }
+  .clock-card {
+    margin: 12px 14px 0 !important;
+    width: calc(100% - 28px) !important;
+    max-width: none;
+    padding: 14px 16px !important;
+  }
+  .clock-card .time { font-size: 28px !important; }
+  .hero-stats {
+    margin: 12px 12px 16px !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    height: auto !important;
+  }
+  .hero-stats > div {
+    min-height: 56px;
+    padding: 8px 4px;
+  }
+  .jp-tag { display: none !important; }
+}
+
+/* Prevent floating buttons covering last content */
+.donate-fab {
+  bottom: 78px !important;
+  z-index: 40;
+}
+.ticket-launcher {
+  bottom: 18px !important;
+  z-index: 41;
+}
+.back-top {
+  bottom: 78px !important;
+  right: 86px !important;
+  z-index: 39;
+}
+@media (max-width: 650px) {
+  .donate-fab { bottom: 72px !important; right: 14px !important; }
+  .ticket-launcher { bottom: 14px !important; right: 14px !important; }
+  .back-top { bottom: 72px !important; right: 68px !important; }
+}
+
+/* Sidebar quote never covers nav items */
+.side-quote {
+  position: relative !important;
+  bottom: auto !important;
+  margin-top: 24px;
+  max-height: none;
+}
+.side-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+  padding-bottom: 12px;
+}
+.side-inner .side-item:last-of-type {
+  margin-bottom: 8px;
+}
+
+/* Text & music never overflow */
+.music-home {
+  overflow: hidden;
+}
+.resource-card b,
+.resource-card small,
+.track-copy b,
+.track-copy small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.resource-card p {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ---------- Professional presentation animations ---------- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(.96); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes slideRight {
+  from { opacity: 0; transform: translateX(-18px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.hero {
+  animation: scaleIn .7s cubic-bezier(.22,.8,.28,1) both;
+}
+.hero-profile {
+  animation: fadeUp .65s .12s cubic-bezier(.22,.8,.28,1) both;
+}
+.clock-card {
+  animation: fadeUp .65s .22s cubic-bezier(.22,.8,.28,1) both;
+}
+.hero-stats {
+  animation: fadeUp .55s .32s cubic-bezier(.22,.8,.28,1) both;
+}
+
+.music-home,
+.home-insights,
+.latest,
+.history-section,
+.intro,
+.section {
+  animation: fadeUp .6s cubic-bezier(.22,.8,.28,1) both;
+}
+
+/* Stagger children for lecture-like reveal */
+.cat-card,
+.resource-card,
+.insight-card,
+.live-stats > div {
+  opacity: 0;
+  animation: fadeUp .55s cubic-bezier(.22,.8,.28,1) forwards;
+}
+.cat-card:nth-child(1), .resource-card:nth-child(1) { animation-delay: .08s; }
+.cat-card:nth-child(2), .resource-card:nth-child(2) { animation-delay: .14s; }
+.cat-card:nth-child(3), .resource-card:nth-child(3) { animation-delay: .20s; }
+.cat-card:nth-child(4), .resource-card:nth-child(4) { animation-delay: .26s; }
+.cat-card:nth-child(5), .resource-card:nth-child(5) { animation-delay: .32s; }
+.cat-card:nth-child(6), .resource-card:nth-child(6) { animation-delay: .38s; }
+
+.side-item {
+  animation: slideRight .45s cubic-bezier(.22,.8,.28,1) both;
+}
+.side-item:nth-child(1) { animation-delay: .04s; }
+.side-item:nth-child(2) { animation-delay: .08s; }
+.side-item:nth-child(3) { animation-delay: .12s; }
+.side-item:nth-child(4) { animation-delay: .16s; }
+.side-item:nth-child(5) { animation-delay: .20s; }
+.side-item:nth-child(6) { animation-delay: .24s; }
+.side-item:nth-child(7) { animation-delay: .28s; }
+.side-item:nth-child(8) { animation-delay: .32s; }
+.side-item:nth-child(9) { animation-delay: .36s; }
+.side-item:nth-child(10){ animation-delay: .40s; }
+.side-item:nth-child(11){ animation-delay: .44s; }
+
+.topbar {
+  animation: fadeIn .4s ease both;
+}
+
+/* Hover polish — presentation feel */
+.resource-card,
+.cat-card,
+.insight-card {
+  transition: transform .28s cubic-bezier(.22,.8,.28,1),
+              box-shadow .28s ease,
+              border-color .28s ease;
+}
+.resource-card:hover,
+.cat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 42px rgba(0,0,0,.28);
+}
+.avatar-ring {
+  transition: transform .35s cubic-bezier(.22,.8,.28,1), box-shadow .35s ease;
+}
+.avatar-ring:hover {
+  transform: scale(1.04);
+}
+
+/* Scroll-triggered helper class (JS optional, CSS fallback already animates) */
+.reveal-ready {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .55s cubic-bezier(.22,.8,.28,1),
+              transform .55s cubic-bezier(.22,.8,.28,1);
+}
+.reveal-ready.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Ensure announcement never collides */
+.announcement-bar {
+  margin-bottom: 14px;
+  position: relative;
+  z-index: 5;
+}
+
+/* Text/modal safety */
+.search-box,
+.admin-box,
+.ticket-panel {
+  max-height: min(82vh, 820px);
+  overflow-y: auto;
+}
+
+/* Light theme consistency for new rules */
+.light-theme .clock-card {
+  background: linear-gradient(145deg, rgba(248,252,255,.95), rgba(228,239,247,.9));
+}
+
+/* V12.1 — ensure sidebar & cards never stay invisible */
+.side-item {
+  opacity: 1 !important;
+  animation: none !important;
+}
+.cat-card,
+.resource-card,
+.insight-card,
+.live-stats > div {
+  opacity: 1 !important;
+}
+/* Keep gentle entrance only on major sections */
+.music-home,
+.home-insights,
+.latest,
+.history-section,
+.intro,
+.section {
+  animation: fadeUp .55s cubic-bezier(.22,.8,.28,1) both;
+}
+.hero,
+.hero-profile,
+.clock-card,
+.hero-stats {
+  /* keep their entrance */
+}
+
+/* Extra safe bottom space so FABs never cover cards */
+@media (max-width: 650px) {
+  .music-home {
+    margin-bottom: 12px;
+    padding-bottom: 18px;
+  }
+  main.content {
+    padding-bottom: 130px !important;
+  }
 }

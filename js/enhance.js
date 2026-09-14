@@ -5,18 +5,22 @@
   const initPageTransition = () => {
     const links = document.querySelectorAll('a[href$=".html"]');
     links.forEach((link) => {
-      if (link.href === window.location.href) return;
+      // Skip current page links
+      if (link.href === window.location.href || link.href.endsWith(window.location.pathname)) return;
 
       link.addEventListener('click', (e) => {
+        // Skip if modifier keys pressed
+        if (e.ctrlKey || e.metaKey || e.shiftKey) return;
+
         const main = document.querySelector('main.content');
         if (!main) return;
 
-        main.classList.add('page-exit');
+        e.preventDefault();
+        
+        main.style.animation = 'slideOutToLeft 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards';
         setTimeout(() => {
           window.location.href = link.href;
         }, 380);
-
-        e.preventDefault();
       });
     });
   };
@@ -79,10 +83,6 @@
     const sideQuote = document.querySelector('.side-quote');
     if (!sideQuote) return;
 
-    // Wrap text in span
-    const original = sideQuote.innerHTML;
-    const textContent = sideQuote.textContent;
-
     // Create icon button
     const icon = document.createElement('button');
     icon.className = 'side-quote-icon';
@@ -90,41 +90,43 @@
     icon.title = 'Ẩn/hiện trích dẫn';
     icon.setAttribute('type', 'button');
     icon.setAttribute('aria-label', 'Ẩn/hiện trích dẫn');
-
-    sideQuote.style.position = 'relative';
+    icon.style.display = 'none';
 
     // Start animation on page load
     const startAnimation = () => {
       sideQuote.classList.add('show-quote');
-      sideQuote.appendChild(icon);
 
       // Collapse after 30 seconds
-      setTimeout(() => {
+      const collapseTimer = setTimeout(() => {
         const textSpan = sideQuote.querySelector('.side-quote-text');
-        if (textSpan) {
-          textSpan.style.display = 'none';
-          sideQuote.style.minHeight = '36px';
-          sideQuote.style.maxHeight = '36px';
-          sideQuote.style.overflow = 'hidden';
-          sideQuote.style.padding = '6px 10px';
-        }
+        if (!textSpan) return;
+
+        textSpan.style.display = 'none';
+        sideQuote.style.minHeight = '36px';
+        sideQuote.style.maxHeight = '36px';
+        sideQuote.style.overflow = 'hidden';
+        sideQuote.style.padding = '8px 12px';
+        icon.style.display = 'grid';
 
         // Click to toggle
-        icon.addEventListener('click', (e) => {
+        icon.onclick = (e) => {
           e.preventDefault();
           e.stopPropagation();
           const isHidden = textSpan.style.display === 'none';
           textSpan.style.display = isHidden ? 'block' : 'none';
           sideQuote.style.maxHeight = isHidden ? 'none' : '36px';
-          sideQuote.style.padding = isHidden ? '13px 12px' : '6px 10px';
+          sideQuote.style.overflow = isHidden ? 'visible' : 'hidden';
+          sideQuote.style.padding = isHidden ? '17px 16px' : '8px 12px';
           sideQuote.style.minHeight = isHidden ? 'auto' : '36px';
           icon.innerHTML = isHidden ? '📖' : '🎓';
-        });
+        };
       }, 30000);
+
+      sideQuote.appendChild(icon);
     };
 
-    // Wrap quote text
-    if (sideQuote.innerHTML.includes('Không có')) {
+    // Check if quote exists
+    if (sideQuote.textContent.includes('Không có')) {
       const quoteHTML = sideQuote.innerHTML;
       sideQuote.innerHTML = `<span class="side-quote-text">${quoteHTML}</span>`;
       startAnimation();
@@ -135,10 +137,31 @@
   const initClockCardFix = () => {
     const clockCard = document.querySelector('.clock-card');
     if (clockCard) {
-      clockCard.style.marginRight = '20px';
-      clockCard.style.position = 'relative';
-      clockCard.style.left = '-15px';
+      clockCard.style.position = 'absolute';
+      clockCard.style.right = '60px';
+      clockCard.style.top = '50px';
+      clockCard.style.width = '320px';
+      clockCard.style.margin = '0';
+      clockCard.style.zIndex = '3';
     }
+
+    // Responsive
+    const handleResize = () => {
+      if (window.innerWidth <= 1200) {
+        if (clockCard) {
+          clockCard.style.right = '40px';
+          clockCard.style.width = '300px';
+        }
+      } else {
+        if (clockCard) {
+          clockCard.style.right = '60px';
+          clockCard.style.width = '320px';
+        }
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
   };
 
   // ===== 6. RESOURCE CARD AVATAR =====

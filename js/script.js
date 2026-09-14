@@ -59,7 +59,7 @@ function downloadCount(id){return Number(localStorage.getItem('giahuy-dl-'+id)||
 function bumpDownload(id){localStorage.setItem('giahuy-dl-'+id,String(downloadCount(id)+1));const h=JSON.parse(localStorage.getItem('giahuy-history')||'[]');const now=Date.now();const next=[{id,at:now},...h.filter(x=>String(x.id)!==String(id))].slice(0,30);localStorage.setItem('giahuy-history',JSON.stringify(next))}
 async function blobOf(id,store='files'){const d=await db();return new Promise((res,rej)=>{const r=d.transaction(store,'readonly').objectStore(store).get(id);r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)})}
 async function downloadFile(id){const x=await blobOf(id);if(!x?.blob){notify('Mục mẫu chưa có file thật.','error');return}bumpDownload(x.id);const u=URL.createObjectURL(x.blob),a=document.createElement('a');a.href=u;a.download=x.fileName||x.name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1000);notify('Đang tải xuống: '+x.name)}
-function card(x){const defaultIcon=iconFor(x);const avatarInner=x.avatar?`<img src="${esc(x.avatar)}" alt="" onerror="this.style.display='none';this.parentElement.querySelector('.default-avatar-icon').style.display='flex'"><span class="default-avatar-icon" style="display:none">${defaultIcon}</span>`:`<span class="default-avatar-icon">${defaultIcon}</span>`;return `<article class="resource-card" id="resource-${esc(x.id)}"><div class="card-top"><div class="doc-avatar resource-icon">${avatarInner}</div><div style="min-width:0"><b title="${esc(x.name)}">${esc(x.name)}</b><small>${esc(CATS[x.cat]||x.cat)} • ${fmtSize(x.size)}${x.builtin?' • Mẫu':''} ${x.featured?'• ★ Nổi bật':''}</small></div><button class="fav-btn ${isFav(x.id)?'active':''}" title="${isFav(x.id)?'Bỏ yêu thích':'Lưu yêu thích'}" data-fav-id="${esc(x.id)}">${isFav(x.id)?'★':'☆'}</button></div>${x.featured?'<span class="featured-badge">FEATURED</span>':''}<p>${esc(x.desc||'Không có mô tả.')}</p><div class="tag-row"><span class="tag">${esc(x.fileName||'Không có file')}</span><span class="tag">↓ ${downloadCount(x.id)}</span><span class="tag">${new Date(x.created||Date.now()).toLocaleDateString('vi-VN')}</span><button class="tag like-btn ${isLiked(x.id)?'active':''}" title="${isLiked(x.id)?'Bỏ thích':'Thích'}" data-like-id="${esc(x.id)}">${isLiked(x.id)?'❤':'♡'} ${likeCount(x.id)}</button></div><div class="card-actions"><button class="small-btn primary" data-open-id="${esc(x.id)}">Tải xuống</button><button class="small-btn" data-detail-id="${esc(x.id)}">Chi tiết</button></div></article>`}
+function card(x){return `<article class="resource-card" id="resource-${esc(x.id)}"><div class="card-top"><span class="resource-icon">${iconFor(x)}</span><div style="min-width:0"><b title="${esc(x.name)}">${esc(x.name)}</b><small>${esc(CATS[x.cat]||x.cat)} • ${fmtSize(x.size)}${x.builtin?' • Mẫu':''} ${x.featured?'• ★ Nổi bật':''}</small></div><button class="fav-btn ${isFav(x.id)?'active':''}" title="${isFav(x.id)?'Bỏ yêu thích':'Lưu yêu thích'}" data-fav-id="${esc(x.id)}">${isFav(x.id)?'★':'☆'}</button></div>${x.featured?'<span class="featured-badge">FEATURED</span>':''}<p>${esc(x.desc||'Không có mô tả.')}</p><div class="tag-row"><span class="tag">${esc(x.fileName||'Không có file')}</span><span class="tag">↓ ${downloadCount(x.id)}</span><span class="tag">${new Date(x.created||Date.now()).toLocaleDateString('vi-VN')}</span><button class="tag like-btn ${isLiked(x.id)?'active':''}" title="${isLiked(x.id)?'Bỏ thích':'Thích'}" data-like-id="${esc(x.id)}">${isLiked(x.id)?'❤':'♡'} ${likeCount(x.id)}</button></div><div class="card-actions"><button class="small-btn primary" data-open-id="${esc(x.id)}">Tải xuống</button><button class="small-btn" data-detail-id="${esc(x.id)}">Chi tiết</button></div></article>`}
 function detailOf(id){blobOf(id).then(async x=>{if(!x)return;let m=document.getElementById('detailModal');if(!m){m=document.createElement('div');m.className='search-modal';m.id='detailModal';document.body.appendChild(m)}const preview=x.blob&&x.mime?.startsWith('image/')?`<div class="detail-preview"><img src="${URL.createObjectURL(x.blob)}" alt=""></div>`:'';const aud=x.blob&&x.mime?.startsWith('audio/')?`<audio class="detail-audio" controls src="${URL.createObjectURL(x.blob)}"></audio>`:'';m.classList.add('open');m.innerHTML=`<div class="search-box detail-box"><button class="close" id="detailClose">×</button><div class="modal-heading"><span class="modal-kicker">CHI TIẾT TÀI LIỆU</span><b>${esc(x.name)}</b><small>${esc(CATS[x.cat]||x.cat)} • ${fmtSize(x.size)} • ${new Date(x.created||Date.now()).toLocaleString('vi-VN')}</small></div>${preview}${aud}<div class="detail-grid"><div class="detail-icon">${iconFor(x)}</div><div><p class="detail-desc">${esc(x.desc||'Chưa có mô tả.')}</p><div class="tag-row"><span class="tag">${esc(x.fileName||'Không có file')}</span><span class="tag">${esc(x.mime||'unknown')}</span><span class="tag">↓ ${downloadCount(x.id)} lượt tải</span><span class="tag">${isFav(x.id)?'★ Yêu thích':'☆ Chưa lưu'}</span></div><div class="card-actions" style="margin-top:18px"><button class="primary-btn" id="detailDownload">Tải xuống</button><button class="secondary-btn" id="detailFav">${isFav(x.id)?'Bỏ yêu thích':'Lưu yêu thích'}</button><button class="secondary-btn" id="detailCopy">Sao chép thông tin</button></div></div></div></div>`;$('#detailClose',m).onclick=()=>m.classList.remove('open');$('#detailDownload',m).onclick=()=>downloadFile(x.id);$('#detailFav',m).onclick=()=>{toggleFav(x.id);m.classList.remove('open')};$('#detailCopy',m).onclick=async()=>{await navigator.clipboard?.writeText(`${x.name}\n${CATS[x.cat]||x.cat}\n${x.fileName||''}`);notify('Đã sao chép thông tin tài nguyên.')}})}
 addEventListener('click',e=>{const id=e.target.closest?.('[data-open-id]')?.dataset.openId;if(id){e.preventDefault();downloadFile(isNaN(id)?id:Number(id))}const f=e.target.closest?.('[data-fav-id]');if(f){e.preventDefault();toggleFav(isNaN(f.dataset.favId)?f.dataset.favId:Number(f.dataset.favId))}const d=e.target.closest?.('[data-detail-id]');if(d){e.preventDefault();detailOf(isNaN(d.dataset.detailId)?d.dataset.detailId:Number(d.dataset.detailId))}const lk=e.target.closest?.('[data-like-id]');if(lk){e.preventDefault();toggleLike(isNaN(lk.dataset.likeId)?lk.dataset.likeId:Number(lk.dataset.likeId),lk)}});
 async function renderCatalog(){const root=$('#catalogRoot');if(!root)return;const cat=root.dataset.cat;const title=CATS[cat]||'Tài nguyên';$('#catTitle').textContent=title;$('#catDesc').textContent='Danh sách '+title.toLowerCase()+' được Thầy Gia Huy tổng hợp và cập nhật. Lọc, sắp xếp và lưu vào kho tài liệu cá nhân.';let items=(await getAll('files')).filter(x=>x.cat===cat);const search=($('#catalogSearch')?.value||'').trim().toLowerCase();const sort=$('#catalogSort')?.value||'new';const onlyFav=$('#onlyFav')?.checked;if(search)items=items.filter(x=>[x.name,x.desc,x.fileName].join(' ').toLowerCase().includes(search));if(onlyFav)items=items.filter(x=>isFav(x.id));items.sort((a,b)=>sort==='name'?a.name.localeCompare(b.name,'vi'):sort==='downloads'?downloadCount(b.id)-downloadCount(a.id):(b.created||0)-(a.created||0));$('#catCount').textContent=`${items.length} mục${onlyFav?' • yêu thích':''}`;const list=$('#catalogList');list.innerHTML=items.length?items.map(card).join(''):'<div class="empty-state"><b>Không có kết quả phù hợp.</b><br><small>Thử đổi từ khóa hoặc bỏ bộ lọc yêu thích.</small></div>';const hash=location.hash.replace('#resource-','');if(hash){const el=document.getElementById('resource-'+CSS.escape(decodeURIComponent(hash)));el?.scrollIntoView({behavior:'smooth',block:'center'})}}
@@ -86,34 +86,102 @@ function updateFakeStats(){const v=$('#liveVisits');if(v)v.textContent=bumpTotal
 (async()=>{enhanceStudyUI();ensureDonateUI();await seed();modal();applyAnnouncement();await renderCatalog();await renderHome();await renderMusic();updateFakeStats();setInterval(()=>{const o=$('#heroOnlineCount');if(o)o.textContent=fakeOnlineCount().toLocaleString('vi-VN')},5000)})();
 })();
 
-/* V12 Quote + Admin expand */
-function initV12Enhancements(){
-  var overlay=document.getElementById("quoteOverlay");
-  var icon=document.getElementById("quoteIcon");
-  if(overlay&&icon){
-    setTimeout(function(){overlay.classList.add("show")},600);
-    setTimeout(function(){overlay.style.display="none";icon.classList.add("visible")},3900);
-  }
-  var expandBtn=document.getElementById("btnAdminExpand");
-  var adminBox=document.querySelector(".admin-box");
-  if(expandBtn&&adminBox){
-    expandBtn.addEventListener("click",function(e){
-      e.stopPropagation();
-      adminBox.classList.toggle("expanded");
-      expandBtn.classList.toggle("active");
-      if(adminBox.classList.contains("expanded")){
-        expandBtn.title="Thu nhỏ";expandBtn.textContent="⬇";
-      }else{
-        expandBtn.title="Phóng to";expandBtn.textContent="⛶";
+
+/* ============================================================
+   FIX PATCH JS — Scroll Reveal + Counter Animation + Stagger
+   ============================================================ */
+(function(){
+  // Scroll Reveal with stagger
+  const revealTargets = document.querySelectorAll('.section, .latest, .history-section, .home-insights, .intro, .music-home, .page-hero, .resource-card, .cat-card, .insight-card, .live-stats, .skill, .plugin, .resource, .upload-box, .library-box, .ticket-card, .ticket-list, .queue-item');
+
+  revealTargets.forEach((el, i) => {
+    el.classList.add('reveal');
+    const delayClass = 'reveal-delay-' + ((i % 5) + 1);
+    el.classList.add(delayClass);
+  });
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
       }
     });
-    document.addEventListener("keydown",function(e){
-      if(e.key==="Escape"&&adminBox.classList.contains("expanded")){
-        adminBox.classList.remove("expanded");
-        expandBtn.classList.remove("active");
-        expandBtn.title="Phóng to";expandBtn.textContent="⛶";
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  revealTargets.forEach(el => io.observe(el));
+
+  // Counter animation for stats
+  function animateCounter(el, duration = 1200) {
+    const text = el.textContent.trim();
+    const num = parseInt(text.replace(/[^\d]/g, ''), 10);
+    if (!num || num < 2) return;
+    const suffix = text.replace(/[\d\s]/g, '');
+    const startTime = performance.now();
+    function step(now) {
+      const p = Math.min((now - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(num * eased).toLocaleString('vi-VN') + (suffix ? ' ' + suffix : '');
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  const statObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        animateCounter(e.target);
+        statObserver.unobserve(e.target);
       }
     });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.hero-stats strong, .live-stats b, .admin-stat b, .mini-stat b').forEach(el => statObserver.observe(el));
+
+  // Smooth nav scroll indicator
+  const sections = document.querySelectorAll('section[id], .section[id]');
+  if (sections.length) {
+    const navLinks = document.querySelectorAll('.topnav a[href^="#"], .side-item[href^="#"]');
+    const navIo = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          navLinks.forEach(l => l.classList.remove('active'));
+          const id = e.target.id;
+          navLinks.forEach(l => {
+            if (l.getAttribute('href') === '#' + id) l.classList.add('active');
+          });
+        }
+      });
+    }, { threshold: 0.3 });
+    sections.forEach(s => navIo.observe(s));
   }
-}
-if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",initV12Enhancements)}else{initV12Enhancements()}
+
+  // Parallax subtle effect for hero
+  const hero = document.querySelector('.hero');
+  if (hero) {
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      if (y < 600) {
+        hero.style.transform = 'translateY(' + (y * 0.05) + 'px)';
+      }
+    }, { passive: true });
+  }
+
+  // Petal spawn enhancement
+  const petalLayer = document.querySelector('.petal-layer');
+  if (petalLayer) {
+    function spawnPetal() {
+      const p = document.createElement('div');
+      p.className = 'petal';
+      p.style.left = Math.random() * 100 + 'vw';
+      p.style.setProperty('--x', (Math.random() * 200 - 100) + 'px');
+      p.style.animationDuration = (4 + Math.random() * 6) + 's';
+      p.style.opacity = 0.4 + Math.random() * 0.4;
+      p.style.width = (8 + Math.random() * 6) + 'px';
+      p.style.height = (6 + Math.random() * 4) + 'px';
+      petalLayer.appendChild(p);
+      setTimeout(() => p.remove(), 10000);
+    }
+    setInterval(spawnPetal, 800);
+  }
+})();
